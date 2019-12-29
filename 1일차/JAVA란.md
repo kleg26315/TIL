@@ -2,7 +2,7 @@
 1. 운영체제에 독립적(JVM 때문에)
 2. 사용하기 쉬운 언어(객체 지향 언어)
 3. 자동 메모리 관리(Garbage Collection)
- ※ GC에 대해선 세부적으로 업로드 예정
+   * [Garbage Collection 자세히 알아보기](https://github.com/kleg26315/TIL/blob/master/1%EC%9D%BC%EC%B0%A8/Garbage%20Collection.md)
 4. 네트워크와 분산환경 지원
 5. 멀티쓰래드 지원
 
