@@ -56,3 +56,27 @@ arr2 = arr1.clone(0);
 ```
 
 * [code 확인하러가기](https://github.com/kleg26315/TIL/blob/master/CODE/JAVA/04_array/B_ArrayCopy.java)
+
+## 2차원 배열
+
+2차원 배열이란 자료형이 같은 **1차원 배열의 묶음**으로 배열 안에 다른 배열이 존재하고 2차원 배열은
+할당된 공간마다 인덱스 번호 두 개가 부여됩니다. ( 앞 번호는 행, 뒷 번호는 열 ([0][0]) )
+
+배열 선언 : 자료형[][] 배열명;
+배열 할당 : 자료형[][] 배열명 = new 자료형[행크기][열크기];
+ex) int[][] arr = new int[3][4]; 
+이 예시는 정변 배열(행과 열의 크기가 고정적인 배열)입니다.
+
+가변 배열이란 행 크기는 정해져있으나 각 행에 대한 열 크기가 정해져있지 않은 상태이며
+자료형이 같은 1차원 배열 여러 개를 하나로 묶은 것이 2차원 배열이기 때문에 묶여있는 1차원 배열의 길이가 꼭 같을 필요는 없습니다.
+
+가변 배열 할당 예시를 보겠습니다.
+```java
+int[][] iArr = new int[3][];
+iArr[0] = new int[2];
+iArr[1] = new int[1];
+iArr[2] = new int[3];
+```
+
+* [코드확인하러가기](https://github.com/kleg26315/TIL/blob/master/CODE/JAVA/04_array/DimensionalArray.java)
+
