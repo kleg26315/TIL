@@ -7,7 +7,7 @@
 ex) int[] arr = new int[3];
 
 **new 연산자**는 Heap영역에 공간을 생성하고(주소값이 생김) 변수와 배열은 stack영역에 생성됩니다.
-* [code 확인하러가기]()
+* [code 확인하러가기](https://github.com/kleg26315/TIL/blob/master/CODE/JAVA/04_array/A_Array.java)
 
 ## 배열 저장구조
 ![배열선언할당](https://github.com/kleg26315/TIL/blob/master/resources/%EB%B0%B0%EC%97%B4%EC%84%A0%EC%96%B8%ED%95%A0%EB%8B%B9.PNG)
@@ -55,4 +55,4 @@ arr2 = Arrays.copyOf(arr1, arr1.length);
 arr2 = arr1.clone(0);
 ```
 
-* [code 확인하러가기]()
+* [code 확인하러가기](https://github.com/kleg26315/TIL/blob/master/CODE/JAVA/04_array/B_ArrayCopy.java)
