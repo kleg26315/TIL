@@ -85,3 +85,164 @@ ex) int[] arr = new int[3]; 이것은 객체라고 하지 않습니다.
 |protected(#)|O|O|O||
 |default(~)|O|O|||
 |private(-)|O||||
+
+
+* 필드 예약어
+
+static - 같은 타입의 여러 객체가 **공유할 목적의 필드**에 사용하며, 프로그램 start시에 정적 메모리 영역에 자동 할당되는 멤버에 적용됩니다.
+공유 목적이 있기 때문에 접근제한자는 주로 public으로 합니다.
+
+```java
+B_KindsOfVariable2 bk = new B_KindsOfVariable2();
+int a = bk.staticNum;
+// The static field B_KindsOfVariable2.staticNum should be accessed in a static way
+		
+int a1 = B_KindsOfVariable2.staticNum;
+```
+위 코드를 봤을 때, a1 변수가 가능한 이유는
+
+static은 프로그램 시작시 static영역에 올라가있기 때문에 객체 생성하지 않고도 클래스명.변수명으로도 사용 가능하기 때문입니다.
+
+Math.random() 같은 경우도 Math라는 클래스 안에 random()함수가 static으로 선언되어있기 때문에 객체 생성없이 사용 가능했었습니다.
+
+instance 변수란 객체를 생성해야만 메모리 영역에 올라가는 변수이고
+
+class(static) 변수란 객체 생성 없이 바로 메모리 영역에 올라갈 수 있는 변수, static 예약어가 붙은 변수입니다.
+
+
+final - 하나의 값만 계속 저장해야 하는 변수에 사용하는 예약어입니다.
+
+* 초기화 순서
+
+클래스 변수
+: JVM 기본값 -> 명시적 초기값 -> 클래스 초기화 블록 초기값
+
+인스턴스 변수
+: JVM 기본값 -> 명시적 초기값 -> 인스턴스 초기화 블록 초기값 -> 생성자를 통한 초기값
+
+## 생성자 (Constructor)
+
+생성자는 객체를 생성함을 위함이고 객체가 new연산자를 통해 Heap 메모리 영역에 할당될 때 객체 안에서 만들어지는 필드를 초기화합니다.
+
+생성자는 일종의 메소드로, 전달된 초기 값을 받아서 객체의 필드에 기록합니다.
+
+* 생성자 규칙
+
+생성자의 선언은 메소드 선언과 유사하나 **반환 값이 없으며 생성자명을 클래스명과 똑같이 지정**해주어야 합니다.
+
+* 생성자 표현식
+
+```java
+[접근제한자][예약어] class 클래스명 {
+	[접근제한자]클래스명(){}
+	[접근제한자]클래스명(매개변수){ (this.)필드명 = 매개변수; }
+}
+
+public class Academy {
+	private int studentNo;
+	private String name;
+
+	// 기본 생성자
+	public Academy() {}
+
+	// 매개변수 있는 생성자
+	public Academy(int studentNo, String name) {
+		this.studentNo = studentNo;
+		this.name = name;
+	}
+}
+```
+
+* 기본 생성자
+
+작성하지 않은 경우, 클래스 사용 시 **JVM이 자동으로 기본 생성자 생성**
+
+* 매개변수 생성자
+
+\- 객체 생성 시 전달받은 값으로 객체를 초기화 하기 위해 사용합니다.
+
+\- **매개변수 생성자 작성 시 JVM이 기본 생성자를 자동으로 생성해주지 않습니다.**
+
+\- 상속에서 사용 시 반드시 기본 생성자를 작성합니다.
+
+\- 오버로딩을 이용하여 작성합니다.
+
+## 오버로딩 (Overloading)
+
+**한 클래스 내**에 **동일한 이름**의 메소드를 여러 개 작성하는 기법입니다.
+
+오버로딩의 조건은 매개변수의 개수가 다르거나 매개변수의 타입이 다르거나 매개변수의 순서가 다를 때입니다.
+
+Example)
+![overloadingEx]()
+
+* this
+
+모든 인스턴스 메소드에 숨겨진 채 존재하는 레퍼런스로 **할당된 객체**를 가리킵니다.
+
+또한, 함수 실행 시 전달되는 객체의 주소를 자동으로 받습니다.
+
+this 생성자는 생성자, 같은 클래스의 다른 생성자를 호출할 때 사용하며 반드시 첫 줄에 선언해야 합니다.
+
+```java
+public User(String id, String pwd, String name) {
+	this.userId = id;
+	this.userPwd = pwd;
+	this.userName = name;
+}
+	
+public User(String userId, String userPwd, String userName, Date enrollDate) {
+	this(userId, userPwd, userName); // this 생성자
+	this.enrollDate = enrollDate;
+//	this(userId, userPwd, userName);
+	// Constructor call must be the first statement in a constructor
+}
+```
+
+## 메소드 (Method)
+
+메소드는 수학의 함수와 비슷하며 호출을 통해 사용합니다.
+전달 값이 없는 상태로 호출하거나 어떤 값을 전달하여 호출합니다.
+함수 내에 작성된 연산 수행 후 반환 값/결과 값은 있거나 없을 수 있습니다.
+
+* 메소드 접근제한자
+
+|구분|해당 클래스 내부|같은 패키지 내|자손 클래스 내|전체
+|:---:|:---:|:---:|:---:|:---:|
+|pulic(+)|O|O|O|O|
+|protected(#)|O|O|O||
+|default(~)|O|O|||
+|private(-)|O||||
+
+* 메소드 예약어
+
+|구분|전체|
+|:---:|:---:|
+|static|static 영역에 할당하여 객체 생성 없이 사용|
+|final|종단의 의미, 상속 시 오버라이딩 불가능|
+|abstract|미완성된, 상속하여 오버라이딩으로 완성시켜 사용해야 함|
+|synchronized|동기화 처리, 공유 자원에 한 개의 스레드만 접근 가능함|
+|static final (final static)|static과 final의 의미를 둘 다 가짐|
+
+* 메소드 반환형
+
+|구분|전체|
+|:---:|:---|
+|void|반환형이 없음을 의미, 반환 값이 없을 경우 반드시 작성|
+|기본 자료형|연산 수행 후 반환 값이 기본 자료형일 경우 사용|
+|배열|연산 수행 후 반환 값이 배열인 경우 배열의 주소값이 반환|
+|클래스|연산 수행 후 반환 값이 해당 클래스 타입의 객체일 경우<br> 해당 객체의 주소값이 반환 (클래스=타입)|
+
+반환형이 배열일 경우 주소값을 반환함으로 같은 주소값을 바라보는 얕은 복사가 이뤄집니다.
+
+* 메소드 매개변수
+
+|구분|전체|
+|:---:|:---|
+|()|매개 변수가 없는 것을 의미|
+|기본 자료형|기본형 매개변수 사용 시 값을 복사하여 전달,<br> 매개변수 값을 변경하여도 본래 값은 변경되지 않음|
+|배열|배열, 클래스 등 참조형을 매개변수로 전달 시에는<br> 데이터의 주소 값을 전달하기 때문에 매개변수를 수정하면<br> 본래의 데이터가 수정됨(얕은 복사)|
+|클래스|〃|
+|가변인자|매개변수의 개수를 유동적으로 설정하는 방법으로<br> 가변 매개변수 외 다른 매개변수가 있으면 <br>가변 매개변수를 마지막에 설정<br> *방법:(자료형 ... 변수명)|
+
+\* 매개변수의 수에 제한이 없습니다.
