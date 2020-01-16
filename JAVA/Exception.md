@@ -95,6 +95,28 @@ Example) *java.io.BufferedReader*의 *readLine()* 메소드
 
 [실습 코드 확인](https://github.com/kleg26315/TIL/blob/master/CODE/JAVA/11_Exception/chap02_tryCatch)
 
+* **try ~ with ~ resource**
+
+자바 7에서 추가된 기능으로 finally에서 작성했던 close 처리를 try문에서 자동으로 close 처리를 해줍니다.
+
+*유용한 기능이므로 꼭 알아두시길 바랍니다!!*
+
+```java
+try (BufferedReader br = new BufferedReader(new
+                              FileReader("C:/data/text.txt"))){
+           String s;
+           while((s = br.readLine()) != null) {
+                    System.out.println(s);
+           }
+} catch(FileNotFoundException e) {
+        System.out.println("파일이 없습니다.");
+} catch(IOException e) {
+        e.printStackTrace();
+} catch(Exception e) {
+        e.printStackTrace();
+}
+```
+
 ----------------------------------------------------------------------------------
 
 ### Exception과 오버라이딩
