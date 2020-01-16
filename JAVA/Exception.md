@@ -97,9 +97,12 @@ Example) *java.io.BufferedReader*의 *readLine()* 메소드
 
 * **try ~ with ~ resource**
 
-자바 7에서 추가된 기능으로 finally에서 작성했던 close 처리를 try문에서 자동으로 close 처리를 해줍니다.
+자바 7에서 추가된 기능으로 Try-with-resource는 아래의 코드와 같이<br>
+try에 자원 객체를 전달하면, try 코드 블록이 끝나면 자동으로 자원을 종료해주는 기능입니다.
 
-*유용한 기능이므로 꼭 알아두시길 바랍니다!!*
+즉, 따로 finally 블록이나 모든 catch 블록에 종료 처리를 하지 않아도 됩니다.
+
+***유용한 기능이므로 꼭 알아두시길 바랍니다!!***
 
 ```java
 try (BufferedReader br = new BufferedReader(new
