@@ -62,7 +62,7 @@ java.util 패키지에 포함되어 있으며 인터페이스를 통해 정형�
 ## List
 
 자료들을 순차적으로 나열한 자료구조로 `인덱스`로 관리되며, 중복해서 객체 저장 가능합니다.<br>
-구현 클래스로 ArrayList와 Vector, LinkedList가 있습니다.
+구현 클래스로 `ArrayList`와 `Vector`, `LinkedList`가 있습니다.
 
 * List 계열 주요 메소드
 
@@ -107,5 +107,46 @@ Collections.sort(List<T> list) -> T 객체의 **Comparable**을 상속받아 com
 
 Collections.sort(List<T> list, Comparator<T> c) -> 지정한 **Comparator**클래스에 의한 정렬 (여러 개의 정렬)
 
+## Set
+
+저장 순서가 유지되지 않고, 중복 객체도 저장하지 못하게 하는 자료 구조입니다.<br>
+**null도 중복을 허용하지 않기 때문에 1개의 null만 저장**합니다.<br>
+구현 클래스로 `HashSet`, `LinkedHashSet`, `TreeSet`이 있습니다.
+
+* Set 계열 주요 메소드
+
+[실습 코드 확인하기]()
+
+### HashSet
+
+Set에 객체를 저장할 때 hash함수를 사용하여 처리 속도가 빠릅니다.<br>
+*동일 객체* 뿐 아니라 *동등 객체*도 중복하여 저장하지 않습니다.
+
+* 동일 객체 : 변수는 다른데 주소값이 같은 객체
+
+* 동등 객체 : 주소값은 다른데 데이터가 같은 객체
+
+### LinkedHashSet
+
+HashSet과 거의 동일하지만 Set에 추가되는 순서를 유지한다는 점이 다릅니다.
+
+### TreeSet
+
+검색 기능을 강화시킨 컬렉션으로, 계층 구조를 활용해 이진 트리 자료구조를 구현하여 제공합니다.<br>
+이진 트리를 기반으로 한 Set 컬렉션으로, 왼쪽과 오른쪽 자식 노드를 참조하기 위한 두 개의 변수로 구성됩니다.
+
+레드블랙트리 기반이기 때문에 데이터를 넣었을 때 자동으로 정렬이 됩니다.<br>
+그래서 정렬기준이 꼭 필요하기에 Comparable 또는 Comparator를 통해 정렬 기준을 만들어줘야 합니다.
+
+### Enumeration, Iterator, ListIterator
+
+컬렉션에 저장된 요소를 접근하는데 사용되는 인터페이스로 set은 인덱스로 구성되어있지않아 요소를 가져올 때 사용합니다.
+
+\- Iterator : 단방향이라는 특징, 1회성<br>
+\- Enumeration : Iterator의 구버전<br>
+\- ListIterator : Iterator를 상속받아 양방향 특징( next(), previous() ), List에서만 쓸 수 있음
+
+Iterable은 Collection 상위 인터페이스이기 때문에 iterator() 메소드는 List와 Set 계열에서만 사용가능합니다.<br>
+-> **Map의 경우 Set 또는 List화** 시켜서 iterator()를 사용해야 합니다.
 
 
