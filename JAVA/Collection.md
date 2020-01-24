@@ -66,7 +66,7 @@ java.util 패키지에 포함되어 있으며 인터페이스를 통해 정형�
 
 * List 계열 주요 메소드
 
-[실습 코드 확인하기]()
+[실습 코드 확인하기](https://github.com/kleg26315/TIL/tree/master/CODE/JAVA/13_Collection/practice/list)
 
 ### ArrayList
 
@@ -81,7 +81,7 @@ List의 후손으로 초기 저장용량은 10으로 자동 설정되지만 따�
 
 예) List \<E> list = new ArrayList\<E>();
 
-### Vector
+### Vector (ArrayList의 구버전)
 
 List의 후손으로 ArrayList와 동등하지만 `동기화(Synchronized)`를 제공한다는 점이 ArrayList와의 차이점입니다.<br>
 -> List 객체들 중에서 가장 성능이 좋지 않음
@@ -115,7 +115,7 @@ Collections.sort(List<T> list, Comparator<T> c) -> 지정한 **Comparator**클�
 
 * Set 계열 주요 메소드
 
-[실습 코드 확인하기]()
+[실습 코드 확인하기](https://github.com/kleg26315/TIL/tree/master/CODE/JAVA/13_Collection/practice/set)
 
 ### HashSet
 
@@ -149,4 +149,41 @@ HashSet과 거의 동일하지만 Set에 추가되는 순서를 유지한다는 
 Iterable은 Collection 상위 인터페이스이기 때문에 iterator() 메소드는 List와 Set 계열에서만 사용가능합니다.<br>
 -> **Map의 경우 Set 또는 List화** 시켜서 iterator()를 사용해야 합니다.
 
+## Map
+
+키(key)와 값(value)으로 구성되어 있으며, 키와 값은 모두 객체입니다.<br>
+키는 중복 저장을 허용하지 않고(`Set`방식), 값은 중복 저장 가능(`List`방식)합니다.<br>
+키가 중복되는 경우, 기존에 있는 키에 해당하는 값을 덮어 씌웁니다.<br>
+구현 클래스로는 `HashMap`, `Hashtable`, `LinkedHashMap`, `Properties`, `TreeMap`이 있습니다.
+
+키와 값을 묶어놓고 있는 `Map.Entry`는 키와 값 그 자체를 나타냅니다.
+
+Map안에 있는 Entry 안에는 키와 값을 불러오는 메소드들이 있습니다.
+
+* Map 계열 주요 메소드
+
+[실습 코드 확인하기](https://github.com/kleg26315/TIL/blob/master/CODE/JAVA/13_Collection/practice/map/controller/MapController.java)
+
+### HashMap
+
+키 객체는 `hashCode()`와 `equals()`를 재정의해 **동등 객체**가 될 조건을 정해야 합니다.<br>
+그렇기 때문에, 키 타입은 hashCode와 equals() 메소드가 재정의 되어있는 `String타입`을 주로 사용합니다.
+
+예) Map\<K, V> map = new HashMap\<K, V>();
+
+### Hashtable (HashMap의 구버전)
+
+키 객체 만드는 법은 HashMap과 동일하지만 Hashtable은 스레드 동기화가 된 상태이기 때문에,<br>
+복수의 스레드가 동시에 Hashtable에 접근해 객체를 추가, 삭제 하더라도 스레드에 안전합니다.(Thread safe)
+
+### Properties
+
+**키와 값을 String타입으로 제한**한 Map컬렉션입니다.<br>
+주로 Properties는 프로퍼티(*.properties)파일을 읽어 들일 때 주로 사용합니다.
+
+
+### TreeMap
+
+이진 트리를 기반으로 한 Map 컬렉션으로, 키와 값이 저장된 Map.Entry를 저장하고 왼쪽과 오른쪽 자식 노드를<br>
+참조하기 위해 두 개의 변수로 구성됩니다.
 
