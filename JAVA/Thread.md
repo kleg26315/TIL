@@ -124,6 +124,46 @@ public class Run {
 }
 ```
 
+### 스레드 컨트롤
+
+실행 중인 스레드의 상태를 제어하기 위한 것으로 효율적이고 정교한 스케줄링을 위한 스레드 상태를 제어하는 기능입니다.
+
+![스레드컨트롤](https://github.com/kleg26315/TIL/blob/master/resources/%EC%8A%A4%EB%A0%88%EB%93%9C%EC%BB%A8%ED%8A%B8%EB%A1%A4.PNG)
+
+InterruptedException이 발생하면 isInterrupted가 true가 되도 false로 초기화시켜줍니다.
+
+
+### 동기화 (Synchronized)
+
+한 번에 한 개의 스레드만 프로세스 공유 자원(객체)에 접근할 수 있도록 락(Lock)을 걸어 다른 <br>
+스레드가 진행 중인 작업에 간섭하지 못 하도록 하는 것입니다.
+
+* 동기화 메소드
+
+```java
+public synchronized void method() {
+	// 한 개의 스레드만 실행할 수 있음
+}
+```
+
+* 동기화 블록
+
+```java
+public void method1() {
+	// 여러 스레드 실행할 수 있음
+
+	synchronized (공유객체) {
+		// 한 개의 스레드만 실행할 수 있음
+	}
+	// 여러 스레드 실행할 수 있음
+}
+```
+
+즉, 공유 객체에 일반 메소드는 여러 스레드가 동시 접근할 수 있지만<br>
+동기화 메소드와 동기화 블록은 한 스레드가 이미 접근하고 있으면 다른 스레드는 접근할 수 없습니다.
+
+![스레드동기화](https://github.com/kleg26315/TIL/blob/master/resources/%EC%8A%A4%EB%A0%88%EB%93%9C%EB%8F%99%EA%B8%B0%ED%99%94.PNG)
+
 
 
 
