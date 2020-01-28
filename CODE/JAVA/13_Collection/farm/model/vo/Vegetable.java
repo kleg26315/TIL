@@ -30,6 +30,7 @@ public class Vegetable extends Farm{
 		int result = 1;
 		
 		result = prime*result +((name == null ? 0 : name.hashCode()));
+		result = prime*result + ((super.getKind() == null ? 0 : super.getKind().hashCode()));
 		return result;
 	}
 	
@@ -49,6 +50,15 @@ public class Vegetable extends Farm{
 			}
 		}
 		else if(!name.equals(f.name)) {
+			return false;
+		}
+		
+		if(super.getKind()==null) {
+			if(f.getKind() != null) {
+				return false;
+			}
+		}
+		else if(super.getKind().equals(f.getKind())) {
 			return false;
 		}
 		
