@@ -16,10 +16,8 @@ public class MemberController {
 	private HashMap<String, Member> map = new HashMap<String, Member>();
 	
 	public boolean joinMembership(String id, Member m) {
-		for(int i =0; i<map.size(); i++) {
-			if(map.containsKey(id) == true) {
-				return false;
-			}
+		if(map.containsKey(id) == true) {	// containsKey 메소드를 굳이 반복해서 검사할 필요가 없음
+			return false;
 		}
 		map.put(id, m);
 		return true;
