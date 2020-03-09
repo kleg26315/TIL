@@ -56,4 +56,52 @@ public class MemberController {
 			menu.displayError("조회 결과가 없습니다.");
 		}
 	}
+	
+	public void updateMember() {
+		// 아이디 받아오기
+		String memberId = menu.inputMemberId();
+		
+		// 받아온 아이디가 존재하는지 체크
+		int check = service.checkMember(memberId);
+		
+		if(check != 1) {
+			menu.displayError("입력한 아이디가 존재하지 않습니다.");
+		} else {
+			int sel = menu.updateMember();
+			
+			if(sel == 0) return;
+			
+			String input = menu.inputUpdate();
+			
+			int result = service.updateMember(memberId, sel, input);
+			
+			if(result >= 0) {
+				menu.displaySucces(result + "개의 행이 수정되었습니다.");
+			} else {
+				menu.displayError("데이터 수정 과정 중 오류 발생");
+			}
+		}
+	}
+
+	public void deleteMember() {
+		// 아이디 받아오기
+		String memberId = menu.inputMemberId();
+		
+		// 받아온 아이디가 존재하는지 체크
+		int check = service.checkMember(memberId);
+		
+		if(check != 1) {
+			menu.displayError("입력한 아이디가 존재하지 않습니다.");
+		} else {
+			int result = service.deleteMember(memberId);
+			
+			if(result >= 0) {
+				menu.displaySucces(result + "개의 행이 삭제되었습니다.");
+			} else {
+				menu.displayError("데이터 삭제 과정 중 오류 발생");
+			}
+		}
+	}
+}
+
 }
