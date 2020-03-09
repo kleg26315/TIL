@@ -51,5 +51,43 @@ public class MemberService {
 		ArrayList<Member> mList = mDAO.selectGender(conn, gender);
 		return mList;
 	}
+	public int checkMember(String memberId) {
+		Connection conn = getConnection();
+		
+		MemberDAO mDAO = new MemberDAO();
+		int check = mDAO.checkMember(conn, memberId);
+
+		return check;
+	}
+
+	public int updateMember(String memberId, int sel, String input) {
+		Connection conn = getConnection();
+		MemberDAO mDAO = new MemberDAO();
+		
+		int result = mDAO.updateMember(conn, memberId, sel, input);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
+
+	public int deleteMember(String memberId) {
+		Connection conn = getConnection();
+		MemberDAO mDAO = new MemberDAO();
+		
+		int result = mDAO.deleteMember(conn, memberId);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
 	
 }
