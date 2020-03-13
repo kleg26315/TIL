@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	thead{background: red;}
+	tbody{background: yellow;}
+	tfoot{background: green;}
+</style>
+</head>
+<body>
+	<h1>기본적인 표 만들기</h1>
+	<table border="1">
+	<caption><b>웹 브라우저의 종류</b></caption>
+		<tr>
+			<th>브라우저명</th>
+			<th>제조사</th>
+			<th>홈페이지</th>
+		</tr>
+		
+		<tr>
+			<td>익스플로러</td>
+			<td>MS</td>
+			<td>https://www.microsoft.com</td>
+		</tr>
+		
+		<tr>
+			<td>크롬</td>
+			<td>google</td>
+			<td>https://www.google.com</td>
+		</tr>
+		
+		<tr>
+			<td>사파리</td>
+			<td>애플</td>
+			<td>https://www.apple.com</td>
+		</tr>
+		
+		<tr>
+			<td>파이어폭스</td>
+			<td>Mozilla</td>
+			<td>https://www.mozilla.org</td>
+		</tr>
+	</table>
+	<figure>
+		<figcaption>
+			figure를 이용해서 테이블의 설명 혹은 img의 설명에 주로 사용
+		</figcaption>
+		<figcaption>설명 내용을 여러 줄로 표기할 수 도 있음</figcaption>
+	</figure>
+	
+	<hr>
+	
+	<h1>표의 행과 열 합치기</h1>
+	<h3>회원 정보</h3>
+	
+	<table border="1">
+		<tr>
+			<td rowspan="2" colspan="2" width="130px" height="150px">사진</td>
+			<td width="80px">이름</td>
+			<td width="200px">김경섭</td>
+		</tr>
+		
+		<tr>
+			<td>연락처</td>
+			<td>010-1111-2222</td>
+		</tr>
+		
+		<tr>
+			<td width="70px" height="50px">주소</td>
+			<td colspan="3">서울시 강동구</td>
+		</tr>
+		
+		<tr>
+			<td height="100px">자기소개</td>
+			<td colspan="3">안녕하세요. 만나서 반갑습니다.</td>
+		</tr>
+	
+	</table>
+	
+	<hr>
+	
+	<table border="1">
+		<thead>
+			<tr>
+				<th>이름</th>
+				<th>나이</th>
+				<th>주소</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>김경섭</td>
+				<td>20</td>
+				<td>서울시 강동구</td>
+			</tr>
+			
+			<tr>
+				<td>강건강</td>
+				<td>20</td>
+				<td>경기도 남양주시 지금동</td>
+			</tr>
+			
+			<tr>
+				<td>남나눔</td>
+				<td>4</td>
+				<td>경기도 남양주시 지금동</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="2">총 인원</td>
+				<td>3명</td>
+			</tr>
+		</tfoot>
+	</table>
+</body>
+</html>
