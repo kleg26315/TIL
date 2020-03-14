@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	/* *{color: red;} */
+	
+	p{color: blue;}
+	
+	#id2{background: yellow; color: green;}
+	
+	.class1{background: black; color: white;}
+	.class2{color: coral;}
+	
+	div[name=name1]{background: orange;} /* name 값이 완벽히 name1일 때 */
+	div[name~=name1]{background: brown;} /* name 값이 완벽히 일치, 공백으로 구분 */
+	div[name|=name1]{background: skyblue;} /* name 값 완벽히 일치, -로 구분 */
+	div[name^=name]{background: coral;} /* name 값이 name으로 시작할 때 */
+	div[class$=class]{background: white;} /* class 값이 class로 끝날 때 */
+	div[class*=v-c]{background: blue;} /* class 값이 v-c를 포함하고 있을 때 */
+	
+	#testDiv>h4{background: orangered;}
+	/* #testDiv li{background: yellowgreen;} */
+	#testDiv>ul>li{background: yellowgreen;}
+	#testDiv ul{background: olive; color: white;}
+	
+	#div-test1{background: red;}
+	#div-test2+div{background: chocolate;}
+	#div-test3~div{background: lightsalmon;}
+	
+	#active-test, #hover-test{color: white; width: 300px; height: 100px;}
+	#active-test:active{background: gold; color: black;}
+	#hover-test:hover{background: gold; color: black; cursor: pointer;}
+	
+	input[type="checkbox"]:checked{width: 20px; hegith: 20px;}
+	#userId:focus, #userPwd:focus{background: pink;}
+	option:disabled{background: red; color:white;}
+	option:enabled{background: yellowgreen;}
+	
+	/* 일반 구조 선택자 : 위치를 먼저 본 후 태그 */
+	#test1 p:first-child{background: red; color: white;}
+	#test1 p:last-child{background: orange; color: white;}
+	#test1 p:nth-child(2n){background: yellow;}
+	#test1 p:nth-last-child(4){background: green; color: white;}
+	
+	/* 행태 구조 선택자 : 태그를 먼저 본 후 위치 */
+	#test2 p:first-of-type{background: red; color: white;}
+	#test2 p:last-of-type{background: orange; color: white;}
+	#test2 p:nth-of-type(2n){background: yellow;}
+	#test2 p:nth-last-of-type(4){background: green; color: white;}
+	
+	#test3 p::first-letter{font-size: 100px;}
+	#test3 p::first-line{background: beige;}
+	#test3 p::after{content: "태그 뒤에 추가";}
+	#test3 p::before{content: "태그 앞에 추가";}
+	#test3 p::selection{background: red; color: white;}
+	
+	#test4 li:not(:nth-child(2n-1)){background: gray;}
+</style>
+</head>
+<body>
+	<h1>CSS 기본 선택자</h1>
+	<p>선택자란?</p>
+	특정한 HTML태그를 선택할 때 사용하는 기능으로, 태그를 선택하여 원하는 스타일과 기능을 적용할 수 있음
+	
+	<hr>
+	
+	<h2>모든 선택자</h2>
+	<p>HTML 문서 안의 모든 태그를 선택할 때 전체 선택자 사용</p>
+	<pre>	- *{설정 값;}</pre>
+	<ul>
+		<li>테스트1</li>
+		<li>테스트2</li>
+		<li>테스트3</li>
+	</ul>
+	
+	<hr>
+	
+	<h2>태그 선택자</h2>
+	<p>HTML 문서 내 같은 태그를 모두 선택할 때 사용</p>
+	<pre>	- 태그명{설정 값;}</pre>	
+	
+	<hr>
+	
+	<h2>아이디 선택자와 클래스 선택자</h2>
+	<h3>아이디 선택자</h3>
+	<p>HTML문서 내 해당하는 아이디 속성 값을 가진 태그만 선택할 때 사용</p>
+	<pre>	- #아이디명{설정 값;}</pre>
+	<ol>
+		<li id="id1">아이디 선택자 테스트1</li>
+		<li id="id2">아이디 선택자 테스트2</li>
+		<li id="id3">아이디 선택자 테스트3</li>
+		<li id="id4">아이디 선택자 테스트4</li>
+		<li id="id5">아이디 선택자 테스트5</li>
+	</ol>
+	
+	<h3>클래스 선택자</h3>
+	<p>HTML문서 내 여러 개의 태그를 동일한 클래스 명으로 지정하여 선택할 때 사용</p>
+	<pre>	- .클래스명{설정 값;}</pre>
+	<ul>
+		<li class="class1">클래스 선택자 테스트1</li>
+		<li class="class2">클래스 선택자 테스트2</li>
+		<li class="class1">클래스 선택자 테스트3</li>
+		<li class="class2">클래스 선택자 테스트4</li>
+		<li class="class1">클래스 선택자 테스트5</li>
+	</ul>
+	
+	<h2>속성 선택자</h2>
+	<p>기본 선택자 뒤에 []를 사용하여 속성과 속성 값 사용</p>
+	<pre>	- 선택자[속성=속성값]{설정 값;}</pre>
+	<div name="name1" class="div-class">div 1</div>
+	<div name="name1 name2" class="div-class">div 2</div>
+	<div name="name1-name3" class="div-class">div 3</div>
+	<div name="name4" class="div-class">div 4</div>
+	
+	
+	<hr>
+	
+	<h2>자손 선택자와 후손 선택자</h2>
+	<p>
+		자손 선택자 : 바로 아래 요소<br>
+		후손 선택자 : 하위 요소 전부
+	</p>
+	<pre>
+		- 자손 선택자 : 선택자>선택자{설정 값;}
+		- 후손 선택자 : 선택자 선택자{설정 값;}
+	</pre>
+	<div id="testDiv">
+		<h4>자손입니다</h4>
+		<h4>저도 자손입니다.</h4>
+		<ul id="testUl">저도 자손입니다!
+			<li>나는 ul의 자손이면서 동시에 div의 후손입니다.</li>
+			<li>나는 ul의 자손이면서 동시에 div의 후손입니다.</li>
+		</ul>
+	</div>
+	
+	<hr>
+	
+	<h2>동위 선택자</h2>
+	<p>동위 관계에서 뒤에 위치한 태그를 선택할 때 사용</p>
+	<pre>
+		- 바로 뒤에 요소 선택 : 선택자a+선택자b{설정 값;}
+		- 뒤에 있는 모두 선택 : 선택자a~선택자b{설정 값;}
+	</pre>
+	<div id="div-test1">div test1</div>
+	<div id="div-test2">div test2</div>
+	<div id="div-test3">div test3</div>
+	<div id="div-test4">div test4</div>
+	<div id="div-test5">div test5</div>
+	
+	<hr>
+	
+	<h2>반응 선택자</h2>
+	<p>사용자의 움직임에 따라 달라지는 선택자</p>
+	<pre>
+		- 사용자의 마우스가 클릭한 태그 : 선택자:active{설정 값;}
+		- 사용자의 마우스가 올라가있는 태그 : 선택자:hover{설정 값;}
+	</pre>
+	<div id="active-test">active테스트</div>
+	<br>
+	<div id="hover-test">hover테스트</div>
+	
+	<hr>
+	
+	<h2>상태 선택자</h2>
+	<p>입력 양식의 상태에 따라 선택되는 선택자</p>
+	<pre>
+		- 체크 상태의 input태그 선택 : input태그:checked{설정 값;}
+		- 초점이 맞춰진 input태그 선택 : input태그:focus{설정 값;}
+		- 사용 가능한 input태그 선택 : input태그:enabled{설정 값;}
+		- 사용 불가능한 input태그 선택 : input태그:disabled{설정 값;}
+	</pre>
+	
+	<h3>체크 상태의 input태그 선택</h3>
+	<input type="checkbox" id="apple" name="fruits" value="사과">사과
+	<input type="checkbox" id="banana" name="fruits" value="바나나">바나나
+	<input type="checkbox" id="peach" name="fruits" value="복숭아">복숭아
+	
+	<h3>초점이 맞춰진 input태그 선택</h3>
+	<label>아이디 : </label><input type="text" id="userId" placeholder="아이디를 입력하세요"><br>
+	<label>비밀번호 : </label><input type="password" id="userPwd" placeholder="비밀번호를 입력하세요"><br>
+
+	<h3>사용 가능/불가능한 input태그 선택</h3>
+	<h4>당신의 연령대는?</h4>
+	<select>
+		<option value="10" disabled>10대</option>
+		<option value="20">20대</option>
+		<option value="30">30대</option>
+		<option value="40">40대</option>
+		<option value="50">50대</option>
+		<option value="60" disabled>60대</option>
+	</select>
+	
+	<hr>
+	
+	<h2>구조 선택자</h2>
+	<h3>일반 구조 선택자</h3>
+	<p>특정한 위치에 있는 태그 선택(위치로 구분)</p>
+	<div id="test1">
+		<p>테스트1</p>
+		<p>테스트2</p>
+		<p>테스트3</p>
+		<p>테스트4</p>
+		<p>테스트5</p>
+		<pre>테스트6</pre>
+	</div>
+	
+	<h3>형태 구조 선택자</h3>
+	<p>특정한 위치에 있는 태그 선택(태그 별로 구분)</p>
+	<div id="test2">
+		<p>테스트1</p>
+		<p>테스트2</p>
+		<p>테스트3</p>
+		<p>테스트4</p>
+		<p>테스트5</p>
+		<pre>테스트6</pre>
+	</div>
+	
+	<hr>
+	
+	<h2>문자 선택자</h2>
+	<p>태그 내부에서 특정 조건의 문자를 선택하는 선택자</p>
+	<div id="test3">
+		<p>
+			대법원장은 국회의 동의를 얻어 대통령이 임명한다. 감사위원은 원장의 제청으로 대통령이 임명하고, 그 임기는 4년으로 하며, 1차에 한하여 중임할 수 있다. 국회는 국민의 보통·평등·직접·비밀선거에 의하여 선출된 국회의원으로 구성한다. 대통령은 헌법과 법률이 정하는 바에 의하여 국군을 통수한다. 대통령은 법률안의 일부에 대하여 또는 법률안을 수정하여 재의를 요구할 수 없다. 모든 국민은 자기의 행위가 아닌 친족의 행위로 인하여 불이익한 처우를 받지 아니한다. 공무원의 직무상 불법행위로 손해를 받은 국민은 법률이 정하는 바에 의하여 국가 또는 공공단체에 정당한 배상을 청구할 수 있다. 이 경우 공무원 자신의 책임은 면제되지 아니한다. 외국인은 국제법과 조약이 정하는 바에 의하여 그 지위가 보장된다. 국무회의는 정부의 권한에 속하는 중요한 정책을 심의한다. 국무위원은 국무총리의 제청으로 대통령이 임명한다. 사회적 특수계급의 제도는 인정되지 아니하며, 어떠한 형태로도 이를 창설할 수 없다. 국회는 헌법 또는 법률에 특별한 규정이 없는 한 재적의원 과반수의 출석과 출석의원 과반수의 찬성으로 의결한다. 가부동수인 때에는 부결된 것으로 본다. 대통령은 조국의 평화적 통일을 위한 성실한 의무를 진다. 국회의원은 국가이익을 우선하여 양심에 따라 직무를 행한다. 이 헌법시행 당시에 이 헌법에 의하여 새로 설치될 기관의 권한에 속하는 직무를 행하고 있는 기관은 이 헌법에 의하여 새로운 기관이 설치될 때까지 존속하며 그 직무를 행한다.
+		</p>
+	</div>
+	
+	<hr>
+	
+	<h2>부정 선택자</h2>
+	<p>지금까지의 선택자에 대해 반대로 적용하는 선택자</p>
+	<ul id="test4">
+		<li>테스트1</li>
+		<li>테스트2</li>
+		<li>테스트3</li>
+		<li>테스트4</li>
+		<li>테스트5</li>
+	</ul>
+</body>
+</html>
