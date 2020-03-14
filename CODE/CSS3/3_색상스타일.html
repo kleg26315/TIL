@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style>
+	body{background: bisque;}
+	.clip-test{
+		background-color: white;
+		margin: 30px;
+		padding: 20px;
+		width: 20%;
+		float: left;
+		border: 5px dashed black;
+	}
+	#clip1{background-clip: border-box;}
+	#clip2{background-clip: padding-box;}
+	#clip3{background-clip: content-box;}
+	
+	#bg-img{
+		border: 1px solid black;
+		width: 70%;
+		height: 800px;
+		background-image: url('sample/image/bgsample.PNG');
+		
+		background-repeat: repeat;
+		background-repeat: repeat-x;
+		background-repeat: repeat-y;
+		background-repeat: no-repeat;
+		
+		background-size: auto;
+		background-size: contain;
+		background-size: cover;
+		background-size: 150px 100px;
+		background-size: 80% 80%;
+		
+		background-position: left top;
+		background-position: right top;
+		background-position: center top;
+		background-position: left bottom;
+		background-position: right bottom;
+		background-position: center bottom;
+		background-position: left center;
+		background-position: right center;
+		background-position: center center;
+		background-position: 30px 50px;
+		background-position: 50% 50%;
+		
+		background-origin: border-box;
+		background-origin: padding-box;
+		background-origin: content-box;
+		
+		background-attachment: scroll;
+		background-attachment: fixed;
+	}
+</style>
+</head>
+<body>
+	<h1>배경 스타일</h1>
+	
+	<hr>
+	
+	<h2>background-color</h2>
+	<p>배경 색을 지정할 때 사용</p>
+	<pre>	- 선택자{background-color: 색상;}</pre>
+	<a href="https://www.w3schools.com/colors/colors_names.asp" target="_blank">색상 명 참조 사이트</a>
+	
+	<h2>background-clip</h2>
+	<p>배경 범위 조절할 때 사용</p>
+	<pre>	- 선택자{background-clip: 속성 값;}</pre>
+	<div class="clip-test" id="clip1">
+		굳세게 가는 수 주며, 같은 거친 것이다. 
+        그것을 청춘의 뭇 트고, 끝까지 이상 청춘은 교향악이다. 
+        인도하겠다는 이는 이상은 그리하였는가? 하는 이성은 피고 봄바람이다. 
+        하여도 능히 밥을 더운지라 그들에게 싸인 가진 같으며, 가치를 뿐이다. 
+        것이 지혜는 모래뿐일 튼튼하며, 눈에 것은 품으며, 것이다. 
+        싹이 사는가 같은 피어나기 없으면, 평화스러운 구하지 것이다. 
+        그들은 얼음이 우리의 가장 같지 쓸쓸하랴? 
+        있을 얼음 오아이스도 소담스러운 예수는 몸이 힘있다. 
+        생명을 따뜻한 얼마나 이상 온갖 인생의 청춘은 무한한 실로 봄바람이다. 
+        속잎나고, 남는 모래뿐일 착목한는 것이다.
+	</div>
+	<div class="clip-test" id="clip2">
+		굳세게 가는 수 주며, 같은 거친 것이다. 
+        그것을 청춘의 뭇 트고, 끝까지 이상 청춘은 교향악이다. 
+        인도하겠다는 이는 이상은 그리하였는가? 하는 이성은 피고 봄바람이다. 
+        하여도 능히 밥을 더운지라 그들에게 싸인 가진 같으며, 가치를 뿐이다. 
+        것이 지혜는 모래뿐일 튼튼하며, 눈에 것은 품으며, 것이다. 
+        싹이 사는가 같은 피어나기 없으면, 평화스러운 구하지 것이다. 
+        그들은 얼음이 우리의 가장 같지 쓸쓸하랴? 
+        있을 얼음 오아이스도 소담스러운 예수는 몸이 힘있다. 
+        생명을 따뜻한 얼마나 이상 온갖 인생의 청춘은 무한한 실로 봄바람이다. 
+        속잎나고, 남는 모래뿐일 착목한는 것이다.
+	</div>
+	<div class="clip-test" id="clip3">
+		굳세게 가는 수 주며, 같은 거친 것이다. 
+        그것을 청춘의 뭇 트고, 끝까지 이상 청춘은 교향악이다. 
+        인도하겠다는 이는 이상은 그리하였는가? 하는 이성은 피고 봄바람이다. 
+        하여도 능히 밥을 더운지라 그들에게 싸인 가진 같으며, 가치를 뿐이다. 
+        것이 지혜는 모래뿐일 튼튼하며, 눈에 것은 품으며, 것이다. 
+        싹이 사는가 같은 피어나기 없으면, 평화스러운 구하지 것이다. 
+        그들은 얼음이 우리의 가장 같지 쓸쓸하랴? 
+        있을 얼음 오아이스도 소담스러운 예수는 몸이 힘있다. 
+        생명을 따뜻한 얼마나 이상 온갖 인생의 청춘은 무한한 실로 봄바람이다. 
+        속잎나고, 남는 모래뿐일 착목한는 것이다.
+	</div>
+	
+	<br clear="all"> <!-- float 속성을 이제 해제하려함 -->
+	<hr>
+	
+	<h2>배경 이미지</h2>
+	<h3>background-image</h3>
+	<p>배경에 이미지를 넣고 싶을 때 사용</p>
+	<pre>	- 선택자{background-image: url(경로);}</pre>
+	
+	<h3>background-repeat</h3>
+	<p>배경에 이미지를 반복해서 넣고 싶을 때 사용</p>
+	<pre>	- 선택자{background-repeat: 속성 값;}</pre>
+	
+	<h3>background-size</h3>
+	<p>배경 이미지 크기를 조절하고 싶을 때 사용</p>
+	<pre>	- 선택자{background-size: 속성 값;}</pre>
+	
+	<h3>background-position</h3>
+	<p>배경 이미지 위치를 조정하고 싶을 때 사용</p>
+	<pre>	- 선택자{background-position: 속성 값;}</pre>
+	
+	<h3>background-origin</h3>
+	<p>배경 이미지 배치 시 기준을 정하고 싶을 때 사용</p>
+	<pre>	- 선택자{background-origin: 속성 값;}</pre>
+	
+	<h3>background-attachment</h3>
+	<p>스크롤이 움직임에 따라 배경이 움직일지 움직이지 않을지 정할 때 사용</p>
+	<pre>	- 선택자{background-attachment: scroll | fixed;}</pre>
+	
+	<div id="bg-img">
+		
+	</div>
+</body>
+</html>
