@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style>
+	.display{
+		width: 150px; height: 150px;
+		border: 1px solid black; color: white;
+	}
+	.area1{background: red;}
+	.area2{background: orange;}
+	.area3{background: yellow;}
+	.area4{background: green;}
+	.area5{background: blue;}
+	
+	.display-test1{display: inline;}
+	.display-test2{display: inline-block;}
+	.display-test3{display: block;}
+	
+	.border{width: 100px; height: 100px;}
+	#border-test1{border-style: none;}
+	#border-test2{
+		border-style: hidden; 
+		box-shadow: 5px 5px 3px 2px gray;
+				/*  수평  수직  흐림   번짐   색상  */
+	}
+	#border-test3{border-style: dotted;}
+	#border-test4{border-style: dashed; border-top-color: red;}
+	#border-test5{border-color: red; border-style: double;}
+	#border-test6{
+		border-style: groove;
+		border-top-left-radius: 50px;
+	}
+	#border-test7{
+		border-style: inset;
+		border-bottom-right-radius: 50px;
+	}
+	#border-test8{
+		border-style: outset;
+		border-top-left-radius: 50px;
+		border-bottom-right-radius: 50px;
+	}
+	#border-test9{border-style: ridge;}
+	#border-test10{border-style: solid; border-width: 10px;}
+	
+	.space{background: beige; width: 100px; height: 100px;}
+	#padding1{padding: 10px;}
+	#padding2{padding-top: 50px; padding-left: 100px;}
+	#margin1{margin: 50px;}
+	#margin2{margin-top: 50px; margin-left: 10px;}
+	
+	.positioning{border: 1px solid black;}
+	.outer{position: relative;}
+	#first{
+		width: 300px; height: 300px; background: yellow;
+	}
+	#second{
+		width: 200px; height: 200px; background: yellowgreen;
+		top: 50px; left: 50px;
+		position: absolute;
+	}
+	#third{
+		width: 100px; height: 100px; background: red;
+		top: 100px; left: 100px;
+		position: absolute;
+	}
+	
+	#fixed-area{
+		width: 100px;
+		height: 100px;
+		background: blue;
+		position: fixed;
+	}
+	
+	.visibility{width: 100px; height: 100px; border: 1px solid black;}
+	#v-test1{background: red;}
+	#v-test2{background: green; visibility: hidden; /* display: none; */}
+	#v-test3{background: yellow;}
+	
+	.z-wrap{width: auto; height: 210px; position: relative;}
+	.z-test{
+		width: 150px; height: 100px; border: 1px solid black;
+		position: absolute;
+	}
+	#z1{background: yellow; top: 100px; left: 100px; z-index: 1000;}
+	#z2{background: green; top: 50px; left: 50px; z-index: 500;}
+	#z3{background: red; top: 10px; left: 10px; z-index: 100;}
+	
+	.float-test{
+		border: 1px solid black; width: 100px; height: 50px;
+		float: left;
+	}
+	
+	.column-wrap{border: 1px solid black; height: 300px;}
+	#column1{column-width: 300px; column-gap: 50px; overflow: scroll;}
+	#column2{
+		column-count: 6; column-rule-style: dashed;
+		column-rule-color: darkorange;
+		overflow: scroll;
+	}
+	#column2>h5{column-span: all;}
+	
+	table{
+		caption-side: bottom;
+		border: 1px solid black;
+		height: 400px;
+		width: 300px;
+		/* border-collapse: collapse; */
+		border-collapse: separate;
+		border-spacing: 50px 50px;
+		empty-cells: hide;
+		table-layout: fixed;
+		word-break: break-all;
+	}
+	
+	td{
+		border: 1px solid black;
+		width: 80px;
+		text-align: center;
+		height: 100px;
+		vertical-align: top;
+	}
+</style>
+</head>
+<body>
+	<h1>레이아웃 스타일</h1>
+	
+	<hr>
+	
+	<h2>기본 스타일</h2>
+	<h3>화면 배치 방법</h3>
+	<p>박스 요소(블럭요소)와 인라인 요소의 속성을 변경하여 배치 방식을 변경할 수 있음</p>
+	<h4>블럭요소를 인라인 요소로 변경</h4>
+	<pre>	- 선택자{display: inline;}</pre>
+	<pre>		: 인라인 요소로 변경되면서 width와 height속성 무시</pre>
+	<div class="display display-test1 area1">첫 번째 영역</div>
+	<div class="display display-test1 area2">두 번째 영역</div>
+	<div class="display display-test1 area3">세 번째 영역</div>
+	<div class="display display-test1 area4">네 번째 영역</div>
+	<div class="display display-test1 area5">다섯 번째 영역</div>
+	
+	<pre>	- 선택자{display: inline-block;}</pre>
+	<pre>		: 영역은 인라인 요소, 내용은 블럭 요소</pre>
+	<div class="display display-test2 area1">첫 번째 영역</div>
+	<div class="display display-test2 area2">두 번째 영역</div>
+	<div class="display display-test2 area3">세 번째 영역</div>
+	<div class="display display-test2 area4">네 번째 영역</div>
+	<div class="display display-test2 area5">다섯 번째 영역</div>
+	
+	<h4>인라인 요소를 블럭요소로 변경</h4>
+	<pre>	- 선택자{display: block;}</pre>
+	<pre>		: 블럭요소로 변경되면서 width와 height속성 지정 가능</pre>
+	<span class="display display-test3 area1">첫 번째 영역</span>
+	<span class="display display-test3 area2">두 번째 영역</span>
+	<span class="display display-test3 area3">세 번째 영역</span>
+	<span class="display display-test3 area4">네 번째 영역</span>
+	<span class="display display-test3 area5">다섯 번째 영역</span>
+	
+	<hr>
+	
+	<h2>테두리 스타일</h2>
+	<h3>테두리 없음</h3>
+	<div class="border" id="border-test1"></div>
+	<h3>테두리 없이 그림자만</h3>
+	<div class="border" id="border-test2"></div>
+	<h3>점선 테두리</h3>
+	<div class="border" id="border-test3"></div>
+	<h3>위만 빨간색인 짧은 선 테두리</h3>
+	<div class="border" id="border-test4"></div>
+	<h3>전체 선이 빨간 색인 이중선 테두리</h3>
+	<div class="border" id="border-test5"></div>
+	<h3>좌측 상단이 둥글면서 흠이 파인 듯한 테두리</h3>
+	<div class="border" id="border-test6"></div>
+	<h3>우측 하단이 둥글면서 창에 박혀있는 듯한 테두리</h3>
+	<div class="border" id="border-test7"></div>
+	<h3>좌측 상단과 우측 하단이 둥글면서 창에서 튀어나온 듯한 테두리</h3>
+	<div class="border" id="border-test8"></div>
+	<h3>튀어나온 듯한 테두리</h3>
+	<div class="border" id="border-test9"></div>
+	<h3>두께가 두꺼운 실선 테두리</h3>
+	<div class="border" id="border-test10"></div>
+	
+	<hr>
+	
+	<h2>여백 스타일</h2>
+	<h3>padding</h3>
+	<p>테두리와 콘텐츠 영역 사이의 거리 조절</p>
+	<h3>margin</h3>
+	<p>block요소나 inline요소들 간의 간격을 조절하는 속성</p>
+	
+	<h4>기준 div</h4>
+	<div class="space">콘텐츠 영역</div>
+	<h4>전체적으로 padding적용</h4>
+	<div class="space" id="padding1">콘텐츠 영역</div>
+	<h4>일부분만 padding적용</h4>
+	<div class="space" id="padding2">콘텐츠 영역</div>
+	<h4>전체적으로 margin적용</h4>
+	<div class="space" id="margin1">콘텐츠 영역</div>
+	<h4>일부분만 margin적용</h4>
+	<div class="space" id="margin2">콘텐츠 영역</div>
+	
+	<hr>
+	
+	<h2>포지셔닝</h2>
+	<h3>위치 종류</h3>
+	<h4>절대 위치와 상대 위치</h4>
+	<div class="outer">
+		<div class="positioning" id="first"></div>
+		<div class="positioning" id="second"></div>
+		<div class="positioning" id="third"></div>
+	</div>
+	
+	<h4>고정 위치</h4>
+	<div class="positioning" id="fixed-area"></div>
+	
+	<h3>visibility</h3>
+	<p>페이지에 특정 속성을 보이거나 보이지 않게 하는 속성</p>
+	<div class="visibility" id="v-test1"></div>
+	<div class="visibility" id="v-test2"></div>
+	<div class="visibility" id="v-test3"></div>
+	
+	<h3>z-index</h3>
+	<p>페이지 안의 요소들을 순서대로 쌓는 속성</p>
+	<div class="z-wrap">
+		<div class="z-test" id="z1">요소1</div>
+		<div class="z-test" id="z2">요소2</div>
+		<div class="z-test" id="z3">요소3</div>
+	</div>
+	
+	<hr>
+	
+	<h3>float</h3>
+	<p>페이지 내 요소의 위치를 왼쪽이나 오른쪽으로 지정하는 속성</p>
+	<div class="float-test" id="f1">111</div>
+	<div class="float-test" id="f2">222</div>
+	<div class="float-test" id="f3">333</div>
+	<div class="float-test" id="f4">444</div>
+	<div class="float-test" id="f5">555</div>
+	
+	<br clear="all">
+	
+	<hr>
+	
+	<h2>다단 스타일</h2>
+	<h3>column-width</h3>
+	<p>단의 너비를 고정해 그 기준으로 다단 개수를 나눠 구성</p>
+	
+	<h3>column-count</h3>
+	<p>단의 개수를 지정하여 다단 나눔</p>
+	
+	<h3>column-gap</h3>
+	<p>다단 사이의 여백 설정</p>
+	
+	<h3>column-rule</h3>
+	<p>다단 사이의 효과를 주는 속성</p>
+	
+	<h3>column-span</h3>
+	<p>단을 합치는 속성</p>
+	
+	<h4>단의 너비를 이용하여 단 나누기</h4>
+	<div class="column-wrap" id="column1">
+		<h5>대한민국</h5>
+		대한민국은 통일을 지향하며, 자유민주적 기본질서에 입각한 평화적 통일 정책을 수립하고 이를 추진한다. 대법원장은 국회의 동의를 얻어 대통령이 임명한다. 나는 헌법을 준수하고 국가를 보위하며 조국의 평화적 통일과 국민의 자유와 복리의 증진 및 민족문화의 창달에 노력하여 대통령으로서의 직책을 성실히 수행할 것을 국민 앞에 엄숙히 선서합니다. 대통령은 헌법과 법률이 정하는 바에 의하여 국군을 통수한다. 국회의원과 정부는 법률안을 제출할 수 있다. 헌법에 의하여 체결·공포된 조약과 일반적으로 승인된 국제법규는 국내법과 같은 효력을 가진다. 위원은 탄핵 또는 금고 이상의 형의 선고에 의하지 아니하고는 파면되지 아니한다. 국무위원은 국무총리의 제청으로 대통령이 임명한다. 국가는 지역간의 균형있는 발전을 위하여 지역경제를 육성할 의무를 진다. 국가는 주택개발정책등을 통하여 모든 국민이 쾌적한 주거생활을 할 수 있도록 노력하여야 한다. 대통령이 궐위된 때 또는 대통령 당선자가 사망하거나 판결 기타의 사유로 그 자격을 상실한 때에는 60일 이내에 후임자를 선거한다. 국가는 대외무역을 육성하며, 이를 규제·조정할 수 있다. 제2항과 제3항의 처분에 대하여는 법원에 제소할 수 없다. 교육의 자주성·전문성·정치적 중립성 및 대학의 자율성은 법률이 정하는 바에 의하여 보장된다. 공개하지 아니한 회의내용의 공표에 관하여는 법률이 정하는 바에 의한다. 모든 국민은 소급입법에 의하여 참정권의 제한을 받거나 재산권을 박탈당하지 아니한다. 국정의 중요한 사항에 관한 대통령의 자문에 응하기 위하여 국가원로로 구성되는 국가원로자문회의를 둘 수 있다. 모든 국민은 양심의 자유를 가진다. 국회는 국가의 예산안을 심의·확정한다. 국회의원은 국가이익을 우선하여 양심에 따라 직무를 행한다. 원장은 국회의 동의를 얻어 대통령이 임명하고, 그 임기는 4년으로 하며, 1차에 한하여 중임할 수 있다. 모든 국민은 능력에 따라 균등하게 교육을 받을 권리를 가진다. 형사피해자는 법률이 정하는 바에 의하여 당해 사건의 재판절차에서 진술할 수 있다. 국토와 자원은 국가의 보호를 받으며, 국가는 그 균형있는 개발과 이용을 위하여 필요한 계획을 수립한다. 모든 국민은 보건에 관하여 국가의 보호를 받는다. 대법원장과 대법관이 아닌 법관은 대법관회의의 동의를 얻어 대법원장이 임명한다. 모든 국민은 사생활의 비밀과 자유를 침해받지 아니한다. 저작자·발명가·과학기술자와 예술가의 권리는 법률로써 보호한다. 국회는 헌법 또는 법률에 특별한 규정이 없는 한 재적의원 과반수의 출석과 출석의원 과반수의 찬성으로 의결한다. 가부동수인 때에는 부결된 것으로 본다. 각급 선거관리위원회는 선거인명부의 작성등 선거사무와 국민투표사무에 관하여 관계 행정기관에 필요한 지시를 할 수 있다. 지방의회의 조직·권한·의원선거와 지방자치단체의 장의 선임방법 기타 지방자치단체의 조직과 운영에 관한 사항은 법률로 정한다. 제1항의 탄핵소추는 국회재적의원 3분의 1 이상의 발의가 있어야 하며, 그 의결은 국회재적의원 과반수의 찬성이 있어야 한다. 다만, 대통령에 대한 탄핵소추는 국회재적의원 과반수의 발의와 국회재적의원 3분의 2 이상의 찬성이 있어야 한다. 제3항의 승인을 얻지 못한 때에는 그 처분 또는 명령은 그때부터 효력을 상실한다. 이 경우 그 명령에 의하여 개정 또는 폐지되었던 법률은 그 명령이 승인을 얻지 못한 때부터 당연히 효력을 회복한다.	
+	</div>
+	
+	<h4>단의 개수를 이용하여 단 나누기</h4>
+	<div class="column-wrap" id="column2">
+		<h5>대한민국</h5>
+		대한민국은 통일을 지향하며, 자유민주적 기본질서에 입각한 평화적 통일 정책을 수립하고 이를 추진한다. 대법원장은 국회의 동의를 얻어 대통령이 임명한다. 나는 헌법을 준수하고 국가를 보위하며 조국의 평화적 통일과 국민의 자유와 복리의 증진 및 민족문화의 창달에 노력하여 대통령으로서의 직책을 성실히 수행할 것을 국민 앞에 엄숙히 선서합니다. 대통령은 헌법과 법률이 정하는 바에 의하여 국군을 통수한다. 국회의원과 정부는 법률안을 제출할 수 있다. 헌법에 의하여 체결·공포된 조약과 일반적으로 승인된 국제법규는 국내법과 같은 효력을 가진다. 위원은 탄핵 또는 금고 이상의 형의 선고에 의하지 아니하고는 파면되지 아니한다. 국무위원은 국무총리의 제청으로 대통령이 임명한다. 국가는 지역간의 균형있는 발전을 위하여 지역경제를 육성할 의무를 진다. 국가는 주택개발정책등을 통하여 모든 국민이 쾌적한 주거생활을 할 수 있도록 노력하여야 한다. 대통령이 궐위된 때 또는 대통령 당선자가 사망하거나 판결 기타의 사유로 그 자격을 상실한 때에는 60일 이내에 후임자를 선거한다. 국가는 대외무역을 육성하며, 이를 규제·조정할 수 있다. 제2항과 제3항의 처분에 대하여는 법원에 제소할 수 없다. 교육의 자주성·전문성·정치적 중립성 및 대학의 자율성은 법률이 정하는 바에 의하여 보장된다. 공개하지 아니한 회의내용의 공표에 관하여는 법률이 정하는 바에 의한다. 모든 국민은 소급입법에 의하여 참정권의 제한을 받거나 재산권을 박탈당하지 아니한다. 국정의 중요한 사항에 관한 대통령의 자문에 응하기 위하여 국가원로로 구성되는 국가원로자문회의를 둘 수 있다. 모든 국민은 양심의 자유를 가진다. 국회는 국가의 예산안을 심의·확정한다. 국회의원은 국가이익을 우선하여 양심에 따라 직무를 행한다. 원장은 국회의 동의를 얻어 대통령이 임명하고, 그 임기는 4년으로 하며, 1차에 한하여 중임할 수 있다. 모든 국민은 능력에 따라 균등하게 교육을 받을 권리를 가진다. 형사피해자는 법률이 정하는 바에 의하여 당해 사건의 재판절차에서 진술할 수 있다. 국토와 자원은 국가의 보호를 받으며, 국가는 그 균형있는 개발과 이용을 위하여 필요한 계획을 수립한다. 모든 국민은 보건에 관하여 국가의 보호를 받는다. 대법원장과 대법관이 아닌 법관은 대법관회의의 동의를 얻어 대법원장이 임명한다. 모든 국민은 사생활의 비밀과 자유를 침해받지 아니한다. 저작자·발명가·과학기술자와 예술가의 권리는 법률로써 보호한다. 국회는 헌법 또는 법률에 특별한 규정이 없는 한 재적의원 과반수의 출석과 출석의원 과반수의 찬성으로 의결한다. 가부동수인 때에는 부결된 것으로 본다. 각급 선거관리위원회는 선거인명부의 작성등 선거사무와 국민투표사무에 관하여 관계 행정기관에 필요한 지시를 할 수 있다. 지방의회의 조직·권한·의원선거와 지방자치단체의 장의 선임방법 기타 지방자치단체의 조직과 운영에 관한 사항은 법률로 정한다. 제1항의 탄핵소추는 국회재적의원 3분의 1 이상의 발의가 있어야 하며, 그 의결은 국회재적의원 과반수의 찬성이 있어야 한다. 다만, 대통령에 대한 탄핵소추는 국회재적의원 과반수의 발의와 국회재적의원 3분의 2 이상의 찬성이 있어야 한다. 제3항의 승인을 얻지 못한 때에는 그 처분 또는 명령은 그때부터 효력을 상실한다. 이 경우 그 명령에 의하여 개정 또는 폐지되었던 법률은 그 명령이 승인을 얻지 못한 때부터 당연히 효력을 회복한다.	
+	</div>	
+	
+	<h2>표 스타일</h2>
+	<table>
+		<caption>성적표</caption>
+		<tr>
+			<td>구분</td>
+			<td>점수</td>
+		</tr>
+		<tr>
+			<td>수학</td>
+			<td>100</td>
+		</tr>
+		<tr>
+			<td>국어</td>
+			<td>90</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>하나둘셋넷다섯여섯일곱여덟아홉열onetwothreefourfivesixseveneightnineten!!!</td>
+		</tr>
+	</table>
+</body>
+</html>
