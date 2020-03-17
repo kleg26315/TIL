@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style>
+	.trans2-test{width: 250px; height: 200px;}
+	#trans2-1:hover{
+		-ms-transform: translateX(50px);	/* ms회사 브라우저 */
+		-webkit-transform: translateX(50px); /* 크롬 브라우저 */
+		transform: translate(50px);
+	}
+	#trans2-2:hover{transform: translateY(50px);}
+	#trans2-3:hover{transform: translate(50px, 50px);}
+	#trans2-4:hover{transform: scaleX(2);}
+	#trans2-5:hover{transform: scaleY(2);}
+	#trans2-6:hover{transform: scale(2, 2);}
+	#trans2-7:hover{transform: rotate(45deg);}
+	#trans2-8:hover{transform: skewX(45deg);}
+	#trans2-9:hover{transform: skewY(45deg);}
+	#trans2-10:hover{transform: skew(10deg);}
+	
+	.trans3-test{width: 250px; height: 200px;}
+	#trans3-1:hover{transform: perspective(300px) translate3d(100px, 100px, 100px);}
+	#trans3-2:hover{transform: perspective(300px) translateZ(100px);}
+	#trans3-3:hover{transform: perspective(300px) rotateX(30deg);}
+	#trans3-4:hover{transform: perspective(300px) rotateY(30deg);}
+	#trans3-5:hover{transform: perspective(300px) rotateZ(30deg);}
+	#trans3-6:hover{transform: perspective(300px) rotate3d(2.5, 1.5, -1.5, 30deg);}
+	
+	.to-wrap, .flower{
+		border: 1px solid black;
+		width: 300px; height: 200px;
+	}
+	.to-wrap{display: inline-block;}
+	#left-top:hover{transform: rotate(25deg); transform-origin: left top;}
+	#right-top:hover{transform: rotate(25deg); transform-origin: right top;}
+	#left-bottom:hover{transform: rotate(25deg); transform-origin: left bottom;}
+	#right-bottom:hover{transform: rotate(25deg); transform-origin: right bottom;}
+	
+	.bv-test{width: 300px; height: 200px; border: 1px solid black;}
+	#back1:hover{transform: rotateY(180deg); backface-visibility: hidden;}
+	#back2:hover{transform: rotateY(180deg); backface-visibility: visible;}
+	
+	
+	
+	
+</style>
+</head>
+<body>
+	<h1>변형</h1>
+	
+	<h2>2차원 변형</h2>
+	<h3>좌우로 움직이기</h3>
+	<img src="sample/image/flower1.PNG" class="trans2-test" id="trans2-1">
+	<h3>위아래로 움직이기</h3>
+	<img src="sample/image/flower2.PNG" class="trans2-test" id="trans2-2">
+	<h3>대각선으로 움직이기</h3>
+	<img src="sample/image/flower3.PNG" class="trans2-test" id="trans2-3">
+	<h3>가로로 확대/축소</h3>
+	<img src="sample/image/flower4.PNG" class="trans2-test" id="trans2-4">
+	<h3>세로로 확대/축소</h3>
+	<img src="sample/image/flower5.PNG" class="trans2-test" id="trans2-5">
+	<h3>전체 확대/축소</h3>
+	<img src="sample/image/river1.PNG" class="trans2-test" id="trans2-6">
+	<h3>지정한 각도만큼 회전</h3>
+	<img src="sample/image/river2.PNG" class="trans2-test" id="trans2-7">
+	<h3>지정한 각도만큼 가로로 뒤틀기</h3>
+	<img src="sample/image/city1.PNG" class="trans2-test" id="trans2-8">
+	<h3>지정한 각도만큼 세로로 뒤틀기</h3>
+	<img src="sample/image/forest1.PNG" class="trans2-test" id="trans2-9">
+	<h3>지정한 각도만큼 전체 뒤틀기</h3>
+	<img src="sample/image/flower1.PNG" class="trans2-test" id="trans2-10">
+	
+	<h2>3차원 변형</h2>
+	<h3>지정한 크기만큼 x, y, z 이동</h3>
+	<img src="sample/image/flower1.PNG" class="trans3-test" id="trans3-1">
+	<h3>지정한 크기만큼 z축으로 이동</h3>
+	<img src="sample/image/flower2.PNG" class="trans3-test" id="trans3-2">
+	<h3>지정한 크기만큼 x축 방향으로 회전</h3>
+	<img src="sample/image/flower3.PNG" class="trans3-test" id="trans3-3">
+	<h3>지정한 크기만큼 y축 방향으로 회전</h3>
+	<img src="sample/image/flower4.PNG" class="trans3-test" id="trans3-4">
+	<h3>지정한 크기만큼 z축 방향으로 회전</h3>
+	<img src="sample/image/flower5.PNG" class="trans3-test" id="trans3-5">
+	<h3>지정한 크기만큼 x, y, z축 방향으로 회전</h3>
+	<img src="sample/image/river1.PNG" class="trans3-test" id="trans3-6">
+
+	<h2>기타 변형 속성</h2>
+	<h3>transform-origin</h3>
+	<p>변형의 기준점 설정</p>
+	<div>
+		<div class="to-wrap">
+			<img src="sample/image/flower1.PNG" class="flower" id="left-top">
+		</div>
+		<div class="to-wrap">
+			<img src="sample/image/flower1.PNG" class="flower" id="right-top">
+		</div>
+		<div class="to-wrap">
+			<img src="sample/image/flower1.PNG" class="flower" id="left-bottom">
+		</div>
+		<div class="to-wrap">
+			<img src="sample/image/flower1.PNG" class="flower" id="right-bottom">
+		</div>
+	</div>
+	
+	<h3>backface-visibility</h3>
+	<p>회전하여 뒷면이 보일 경우 뒷면이 어떻게 보이게 할지 정함</p>
+	<img src="sample/image/flower2.PNG" class="bv-test" id="back1">
+	<img src="sample/image/flower2.PNG" class="bv-test" id="back2">
+
+
+
+	
+</body>
+</html>
