@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>.area{border: 1px solid black; height: 180px;}</style>
+</head>
+<body>
+	<h1>기본 문법</h1>
+	
+	<hr><hr>
+	
+	<h2>변수와 자료형</h2>
+	<h3>변수 선언</h3>
+	<p>
+		함수 내부에서 'var 변수명;'으로 선언하면 지역변수가 됨<br>
+		함수 내부에서 '변수명;'으로 선언하거나 함수 밖에서 '변수명;' 혹은 'var 변수명;'으로 선언하면 전역변수가 됨<br>
+		전역변수와 지역변수가 동일한 이름인 경우 함수 내부에서 변수 명을 호출하면 지역 변수가 우선권을 가짐<br>
+		전역 변수 사용 시 'window.변수 명' 혹은 'this.변수 명'으로 표현하여 지역 변수와 구분<br>
+		전역 변수는 해당 window내에서 어디서든지 사용할 수 있으며, 지역 변수는 해당 함수 내에서만 사용 가능
+	</p>
+	<script>
+		str1 = "전역변수";
+		var str2 = "var전역변수";
+		
+		window.onload = function(){
+			// window.onload
+			//		페이지가 로드되면 자동으로 실행되는 함수 구현 시 사용
+			//		한 페이지에서 하나의 window.onload만 사용 가능(이 단점을 보완하기위해선 jQuery 필요)
+			
+			var str1 = "지역변수1";
+			var str3 = "지역변수2";
+			
+			console.log('str1 : '+str1);				// 지역변수1
+			console.log('this.str1 : ' + this.str1);	// 전역변수
+			console.log('window.str1 : '+ window.str1); // 전역변수
+			
+			console.log('str2 : ' + str2);				// var전역변수
+			console.log('this.str2 : '+ this.str2);		// var전역변수
+			console.log('window.str2 : '+ window.str2);	// var전역변수
+			
+			console.log('str3 : ' + str3);				// 지역변수2
+			console.log('this.str3 : ' + this.str3);	// undefined
+			console.log('window.str3 : '+ window.str3);	// undefined
+			
+			what = "난 뭘까?";
+			showWhat();
+		}
+		
+		function showWhat(){
+			console.log(what);			// 난 뭘까?
+			console.log(this.what);		// 난 뭘까?
+			console.log(window.what);	// 난 뭘까?
+		}
+	</script>
+	
+	<h3>자료형</h3>
+	<p>자바스크립트에서는 자료형 별로 변수 타입이 지정되지 않고 리터럴에 의해 자료형 결정</p>
+	<button onclick="typeTest();">자료형 테스트</button>
+	<br><br>
+	<div id="area1" class="area"></div>
+	<script>
+		function typeTest(){
+			var name = "김경섭";					// 문자열
+			var age = 20;						// 숫자
+			var check = true;					// 논리 값
+			var hobby = ['축구', '농구', '야구'];	// 배열
+			var user = {
+							name: '김경섭',
+							age: 20,
+							id: 'user01'
+						};						// 객체
+			var testFunction = function testFunction(num1, num2){
+									var sum = num1 + num2;
+									alert(sum);
+								};				// 함수
+			
+			var area1 = document.getElementById('area1');
+			area1.innerHTML += "문자열 : "+name+"<br>";
+			area1.innerHTML += "숫자 : "+age+"<br>";
+			area1.innerHTML += "논리 : "+check+"<br>";
+			area1.innerHTML += "배열 : "+hobby+"<br>";
+			area1.innerHTML += "객체 : "+user.name +", "+user.age+", "+ user.id +"<br>";
+			area1.innerHTML += "함수 : "+testFunction+"<br>";
+		}
+	</script>
+	
+	<hr>
+	
+	<h2>데이터 형변환</h2>
+	<h3>문자열과 숫자의 + 연산</h3>
+	<p>
+		문자열 + 숫자 = 문자열<br>
+		숫자 + 숫자 + 문자열 = 숫자 먼저 계산되고 그 뒤의 문자열과 합쳐짐
+	</p>
+	<button onclick="testPlus();">문자열과 숫자의 + 연산</button>
+	<br><br>
+	<div id="area2" class="area"></div>
+	<script>
+		function testPlus(){
+			var test1 = 7 + 7;			// 14
+			var test2 = 7 + '7';		// 77
+			var test3 = '7' + 7;		// 77
+			var test4 = '7' + '7';		// 77
+			var test5 = 7 + 7 + '7';	// 147
+			var test6 = 7 + '7' + 7;	// 777
+			var test7 = '7' + 7 + 7;	// 777
+			var test8 = '7' + (7+ 7);	// 714
+			
+			var area = document.getElementById('area2');
+			area.innerHTML += test1 + "<br>";
+			area.innerHTML += test2 + "<br>";
+			area.innerHTML += test3 + "<br>";
+			area.innerHTML += test4 + "<br>";
+			area.innerHTML += test5 + "<br>";
+			area.innerHTML += test6 + "<br>";
+			area.innerHTML += test7 + "<br>";
+			area.innerHTML += test8 + "<br>";
+		}
+	</script>
+	
+	<h3>typeof()연산자</h3>
+	<p>
+		값의 자료형을 확인하는 연산자<br>
+		선언 시 자료형을 지정하지 않기 때문에 변수 명만으로도 데이터의 자료형을 확인할 수 없음<br>
+		변수의 자료형 확인 시 자주 사용
+	</p>
+	<button onclick="typeofTest();">typeof() 확인</button>
+	<br><br>
+	<div id="area3" class="area"></div>
+	<script>
+		function typeofTest(){
+			var name = "김경섭";					// 문자열
+			var age = 20;						// 숫자
+			var check = true;					// 논리 값
+			var hobby = ['축구', '농구', '야구'];	// 배열
+			var user = {
+							name: '김경섭',
+							age: 20,
+							id: 'user01'
+						};						// 객체
+			var testFunction = function testFunction(num1, num2){
+									var sum = num1 + num2;
+									alert(sum);
+								};				// 함수
+			var temp;
+			
+			var area = document.getElementById('area3');
+			area.innerHTML += typeof(name) + "<br>";
+			area.innerHTML += typeof(age) + "<br>";
+			area.innerHTML += typeof(check) + "<br>";
+			area.innerHTML += typeof(hobby) + "<br>";
+			area.innerHTML += typeof(user) + "<br>";
+			area.innerHTML += typeof(testFunction) + "<br>";
+			area.innerHTML += typeof(temp) + "<br>";
+		}
+	</script>
+	
+	<h3>강제형변환</h3>
+	<p>
+		Number(), parseInt(), parseFloat()함수를 이용해 강제 형변환
+	</p>
+	<button onclick="castingTest();">casting테스트</button>
+	<script>
+		function castingTest(){
+			var num1 = 2;
+			var num2 = '3';
+			
+			console.log(num1 + num2);
+			console.log(num1 + Number(num2));
+			console.log(num1 + parseInt(num2));
+			console.log(num1 + parseFloat(num2));
+		}
+	</script>
+	
+	<h2>연산자</h2>
+	<h3>자바와 다른 연산자</h3>
+	<h4>===연산자와 !==연산자</h4>
+	<p>값과 자료형 둘 다 일치하는지, 일치하지 않는지 확인할 때 사용</p>
+	<button onclick="opTest();">확인하기</button>
+	<br><br>
+	<div id="area4" class="area"></div>
+	<script>
+		function opTest(){
+			var check1 = 1;
+			var check2 = '1';
+			
+			var area = document.getElementById('area4');
+			
+			area.innerHTML += (check1 == 1) + "<br>";		// 값만 비교
+			area.innerHTML += (check1 == '1') + "<br>";
+			area.innerHTML += (check2 == 1) + "<br>";
+			area.innerHTML += (check2 == '1') + "<br>";
+			
+			area.innerHTML += (check1 === 1) + "<br>";		// 자료형까지 비교
+			area.innerHTML += (check1 === '1') + "<br>";
+			area.innerHTML += (check2 === 1) + "<br>";
+			area.innerHTML += (check2 === '1') + "<br>";
+		}
+	</script>
+	
+	<hr>
+	
+	<h2>조건문과 반복문</h2>
+	<h3>조건문</h3>
+	<h4>if, switch</h4>
+	
+	<h3>반복문</h3>
+	<h4>for, while, do while</h4>
+	
+	<h4>for in</h4>
+	<button onclick="forinTest();">for in 버튼</button>
+	<script>
+		function forinTest(){
+			var result = "";
+			var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+			
+			// for in문 : 반복하고자 하는 객체(변수)의 'index'를 리턴하여 i에 저장
+			for(var i in array){
+				//result += i + " ";
+				result += array[i] + " ";
+			}
+			
+			alert("for in : " + result);
+		}
+	</script>
+</body>
+</html>
