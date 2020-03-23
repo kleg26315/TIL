@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.area{min-height: 220px; border: 1px solid black;}
+</style>
+</head>
+<body>
+	<h1>객체</h1>
+	
+	<hr><hr>
+	
+	<h2>객체 선언 및 호출</h2>
+	<p>
+		중괄호{}를 사용하여 객체를 생성하고, 속성에는 모든 자료형이 올 수 있음<br>
+		객체는 키 값을 사용하여 속성 식별
+	</p>
+	<button onclick="test1();">실행확인</button>
+	<div id="area1" class="area"></div>
+	<script>
+		function test1(){
+			var product = {
+				pName : '이선제',
+				type : '동물',
+				ingredient : ['살', '뼈', '물'],
+				origin : '대한민국'
+			};
+			
+			console.log(product);
+			
+			var area1 = document.getElementById('area1');
+			
+			area1.innerHTML += 'product : ' + product + '<br><br>';
+			area1.innerHTML += "<b>객체명['속성명']으로 접근하기</b><br>";
+			area1.innerHTML += product['pName'] + "<br>";
+			area1.innerHTML += product['type'] + "<br>";
+			area1.innerHTML += product['ingredient'] + "<br>";
+			area1.innerHTML += product['ingredient'][0] + "<br>";
+			area1.innerHTML += product['ingredient'][1] + "<br>";
+			area1.innerHTML += product['ingredient'][2] + "<br>";
+			area1.innerHTML += product['origin'] + "<br>";
+			area1.innerHTML += "<b>객체명.속성명으로 접근하기</b><br>";
+			area1.innerHTML += product.pName + "<br>";
+			area1.innerHTML += product.type + "<br>";
+			area1.innerHTML += product.ingredient + "<br>";
+			area1.innerHTML += product.ingredient[0] + "<br>";
+			area1.innerHTML += product.ingredient[1] + "<br>";
+			area1.innerHTML += product.ingredient[2] + "<br>";
+			area1.innerHTML += product.origin + "<br>";
+		}
+	</script>
+	
+	<h3>객체의 키 식별자 테스트</h3>
+	<p>
+		객체의 키는 모든 문자열 사용 가능<br>
+		식별자로 인지할 수 없는 단어를 키로 사용한 경우, 무조건 대괄호를 사용해야 객체 요소에 접근 가능
+	</p>
+	<button onclick="test2();">실행확인</button>
+	<div id="area2" class="area"></div>
+	<script>
+		function test2(){
+			var objTest = {
+				'ke$y' : 'KH정보교육원',
+				'k_ey' : 'G강의장',
+				'k ey' : '박신우'
+			};
+			
+			var area2 = document.getElementById('area2');
+			
+			console.log(objTest);
+			
+			area2.innerHTML += 'objTest.ke$y : ' + objTest.ke$y + "<br>";
+			area2.innerHTML += "objTest['ke$y'] : " + objTest['ke$y'] + "<br>";
+			area2.innerHTML += 'objTest.k_ey : ' + objTest.k_ey + "<br>";
+			area2.innerHTML += "objTest['k_ey'] : " + objTest['k_ey'] + "<br>";
+			//area2.innerHTML += 'objTest.k ey : ' + objTest.k ey + "<br>";
+			area2.innerHTML += "objTest['k ey'] : " + objTest['k ey'] + "<br>";
+		}
+	</script>
+	
+	<h3>객체의 메소드 속성</h3>
+	<p>객체의 속성 중 함수 자료형인 속성을 메소드라고 함</p>
+	<button onclick="test3();">실행확인</button>
+	<div id="area3" class="area"></div>
+	<script>
+		function test3(){
+			var area3 = document.getElementById('area3');
+			var dog = {
+					name1 : '모모',
+					name2 : '이든',
+					eat : function(food){
+						// 객체 내에서 자신의 속성을 호출할 때는 반드시 this 사용
+						area3.innerHTML += this.name1 + '와' + this.name2 + '이가'+ food+'를 먹는 중';
+					}
+			};
+			
+			dog.eat('사료');
+		}
+	</script>
+	
+	<h3>객체와 반복문</h3>
+	<p>객체의 속성을 살펴볼 때에는 단순 for문으로는 사용 불가능하고 for in문을 사용해야 함</p>
+	<button onclick="test4();">실행확인</button>
+	<div id="area4" class="area"></div>
+	<script>
+		function test4(){
+			// movie라는 이름의 객체 생성
+			// title, releaseDate, director, mainActor(여러 명 가능), screening
+			var movie = {
+				title : '올드보이',
+				releaseDate : '2009/10/12',
+				director : '김경섭',
+				mainActor : ['최민식', '홍길동'],
+				screening : false
+			};
+			
+			console.log(movie);
+			console.log(movie.length);
+			
+			var area4 = document.getElementById('area4');
+			for(var i in movie){
+				console.log(i);
+				area4.innerHTML += i + ' : ' + movie[i] + "<br>";
+			}
+		}
+	</script>
+	
+	<h2>객체 속성 추가 및 제거</h2>
+	<p>
+		처음 객체 생성 이후 속성을 추가하거나 제거하는 것을 '동적으로 속성을 추가한다/제거한다'라고 함
+	</p>
+	<button onclick="test5();">실행확인</button>
+	<div id="area5" class="area"></div>
+	<script>
+		function test5(){
+			// 빈 객체 선언
+			var student = {};
+			var area5 = document.getElementById('area5');
+			console.log(student);
+			
+			// 객체에 속성 추가
+			student.name = '김경섭';
+			student.hobby = '코딩';
+			student.strength = '착함';
+			student.dream = '유니콘기업 취업';
+			
+			// student 객체에 toString이라는 메소드 넣기
+			student.toString = function(){
+				var str = "";
+				
+				for(var key in this){
+					if(key != "toString"){
+						str += key + " : " + this[key] + "<br>";
+					}
+				}
+				
+				return str;
+			};
+			
+			delete(student.strength);
+			
+			//area5.innerHTML += student.toString();
+			area5.innerHTML = student;
+		}
+	</script>
+	
+	<hr>
+	
+	<h2>객체 배열</h2>
+	<h3>객체와 배열을 사용한 데이터 관리</h3>
+	<button onclick="test6();">실행확인</button>
+	<div id="area6" class="area"></div>
+	<script>
+		function test6(){
+			var student0 = {name:'김경섭', java:90, oracle:100, HTML5:56, CSS3:44, javascript:85};
+			var student1 = {name:'강건강', java:65, oracle:50, HTML5:85, CSS3:38, javascript:65};
+			var student2 = {name:'남나눔', java:75, oracle:90, HTML5:65, CSS3:98, javascript:88};
+			var student3 = {name:'도대담', java:24, oracle:53, HTML5:25, CSS3:68, javascript:90};
+			var student4 = {name:'류라라', java:95, oracle:98, HTML5:85, CSS3:48, javascript:45};
+			var student5 = {name:'문미미', java:93, oracle:98, HTML5:59, CSS3:15, javascript:32};
+			var student6 = {name:'박보배', java:15, oracle:35, HTML5:56, CSS3:20, javascript:45};
+			var student7 = {name:'송성실', java:45, oracle:10, HTML5:78, CSS3:98, javascript:85};
+			var student8 = {name:'윤예의', java:78, oracle:40, HTML5:95, CSS3:75, javascript:98};
+			var student9 = {name:'정재주', java:68, oracle:80, HTML5:25, CSS3:34, javascript:45};
+			
+			var students = [];
+			students.push(student0);
+			students.push(student1);
+			students.push(student2);
+			students.push(student3);
+			students.push(student4);
+			students.push(student5);
+			students.push(student6);
+			students.push(student7);
+			students.push(student8);
+			students.push(student9);
+			
+			console.log(students);
+			
+			// 각 객체에 getSum(), getAvg() 추가
+			for(var i in students){
+				students[i].getSum = function(){
+					return this.java + this.oracle + this.HTML5 + this.CSS3 + this.javascript;
+				}
+				
+				students[i].getAvg = function(){
+					return this.getSum() / 5;
+				}
+				
+				document.getElementById('area6').innerHTML += '이름 : '+students[i].name + 
+																", 총점 : "+students[i].getSum() + 
+																", 평균 : "+students[i].getAvg() +"<br>";
+			}
+		}
+	</script>
+</body>
+</html>
