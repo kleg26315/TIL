@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	div{width: 500px; min-height: 100px; border: 1px solid black;}
+</style>
+</head>
+<body>
+	<h1>함수</h1>
+	
+	<hr><hr>
+	
+	<h2>함수 선언</h2>
+	<h3>선언적 함수</h3>
+	<p>function키워드에 함수 명을 작성하여 사용하는 방법</p>
+	<pre>	- function 함수명(){ 소스코드 작성 }</pre>
+	<button onclick="test1();">실행확인</button>
+	<div id="div1"></div>
+	<script>
+		function test1(){
+			document.getElementById('div1').innerHTML = "test1() 함수 실행";
+			
+		}
+	</script>
+	
+	<h3>익명 함수</h3>
+	<p>함수 명 작성하지 않고 변수에 대입하는 방법</p>
+	<pre>	- 함수명 = function(){ 소스코드 작성 }</pre>
+	<button onclick="test2();">실행확인</button>
+	<div id="div2"></div>
+	<script>
+		var test2 = function(){
+			document.getElementById('div2').innerHTML = 'test2() 함수 실행';	
+		}
+	</script>
+	
+	<h3>스스로 실행하는 함수</h3>
+	<p>호출이 따로 필요 없음</p>
+	<pre>
+	- (function(){})();
+	- (function(){}());
+	</pre>
+	<div id='div3'></div>
+	<script>
+		(function(){
+			document.getElementById('div3').innerHTML = '자동으로 혼자 실행';
+		})();
+	</script>
+	
+	<hr>
+	
+	<h2>함수 전달인자와 매개변수</h2>
+	<h3>매개인자로 전달하기</h3>
+	<button id="btn1">실행확인</button>
+	<div id="div4"></div>
+	<script>
+		function test4(value){
+			document.getElementById('div4').innerHTML += value + "<br>";
+			console.log("매개인자 개수 : "+arguments.length);
+			// 모든 function에 존재하는 배열로 매개변수를 저장함
+		}
+		
+		document.getElementById('btn1').onclick = function(){
+			test4('안녕');
+			
+			test4('안녕하세요', '반값습니다');
+			
+			test4();
+		}
+	</script>
+	
+	<h3>매개인자로 스스로를 전달하기</h3>
+	<p>this를 통해 전달 가능, 여기서 this는 window객체가 아닌 element</p>
+	<button onclick="test5(this);">JavaScript</button>
+	<button onclick="test5(this);">jQuery</button>
+					
+	<script>
+		function test5(value){
+			alert('오늘 배울 내용은 ' + value.innerText + '입니다.');
+		}
+	</script>
+	
+	<h3>함수의 리턴처리</h3>
+	<button onclick="test6();">실행확인</button>
+	<div id="div6"></div>
+	<script>
+		function returnFunction(){
+			return Math.floor(Math.random() * 100) + 1;
+		}
+		
+		function test6(){
+			var value = returnFunction();
+			document.getElementById('div6').innerHTML += value + "/";
+		}
+	</script>
+	
+	<h3>가변인자 함수 테스트</h3>
+	<button onclick="test7();">실행확인</button>
+	<div id="div7"></div>
+	<script>
+		function test7(){
+			var sum = sumAll(11, 22, 33, 44, 55);
+			document.getElementById('div7').innerHTML = '더하기 결과 : ' +sum;
+		}
+		
+		function sumAll(){
+			console.log('arguments의 타입 : '+typeof(arguments));
+			console.log('arguments의 길이 : '+arguments.length);
+			console.log(arguments);
+			
+			var sum = 0;
+			for(var i = 0; i< arguments.length; i++){
+				sum += arguments[i];
+			}
+			
+			return sum;
+		}
+	</script>
+	
+	<h3>매개변수로 함수 전달</h3>
+	<button onclick="test8(calledFunc);">실행확인</button>
+	<div id="div8"></div>
+	<script>
+		function test8(calledFunc){
+			for(var i = 0; i <10; i++){
+				calledFunc(i);
+			}
+		}
+		
+		function calledFunc(i){
+			document.getElementById('div8').innerHTML += (i+1) + "번 째 함수 호출<br>";
+		}
+	</script>
+	
+	<h3>익명 함수 리턴</h3>
+	<input type="text" id="name">
+	<button onclick="test9()();">실행확인</button>
+	<div id="div9"></div>
+	<script>
+		function test9(){
+			var name = document.getElementById('name').value;
+			
+			return function(){
+				document.getElementById('div9').innerHTML = name + "님, 반갑습니다";				
+			};
+		}
+	</script>
+	
+	<h3>내장 함수</h3>
+	<h4>eval()</h4>
+	<p>문자열을 자바스크립트 코드로 변환해 실행</p>
+	계산식 : <input type="text" id="test1"><button onclick="test10();">실행확인</button>
+	<div id="div10"></div>
+	<script>
+		function test10(){
+			var div = document.getElementById('div10');
+			var val = document.getElementById('test1').value;
+			div.innerHTML = '값 자체 : ' + val + "<br>";
+			div.innerHTML += 'eval 적용 : ' + eval(val) + "<br>";
+		}
+	</script>
+	
+	<h4>infinity와 NaN</h4>
+	<p>
+		대부분의 프로그래밍 언어는 0으로 숫자를 나누면 자동으로 오류가 발생하면서 프로그램이 종료되지만<br>
+		자바스크립트는 0으로 숫자를 나누면 infinity라는 값이 들어가게 되고<br>
+		자바스크립트가 표현할 수 없는 숫자는 NaN(Not a Number)으로 표시
+	</p>
+	<button onclick="test12();">실행확인</button>
+	<div id="div12"></div>
+	<script>
+		function test12(){
+			var num1 = 10/0;
+			var num2 = 10/'a';
+			
+			var div12 = document.getElementById("div12");
+			
+			div12.innerHTML += num1 + "<br>";
+			div12.innerHTML += num2 + "<br>";			
+			div12.innerHTML += isFinite(num1) + "<br>";	// false
+			div12.innerHTML += (num1 == Infinity) + "<br>";
+			div12.innerHTML += isNaN(num2) + "<br>";
+			
+			var num3 = -10/0;
+			div12.innerHTML += num3 + "<br>";
+			div12.innerHTML += (num3 == Infinity) + "<br>";
+			div12.innerHTML += (num3 == -Infinity) + "<br>";
+			
+			console.log(typeof num1);
+			console.log(typeof num2);	// Not a Number 도 number로 취급
+			console.log(typeof num3);
+		}
+	</script>
+</body>
+</html>
