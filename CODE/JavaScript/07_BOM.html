@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.area{border: 1px solid black; height: 300px;}
+</style>
+</head>
+<body>
+	<h1>BOM(Browser Object Model)</h1>
+	
+	<hr><hr>
+	
+	<h2>location객체</h2>
+	<p>브라우저 주소 표시줄과 관련된 객체</p>
+	<button onclick="test1();">실행확인</button>
+	<div id="area1" class="area"></div>
+	<script>
+		function test1(){
+			var area1 = document.getElementById('area1');
+			
+			for(var key in location){
+				area1.innerHTML += (key + " : " + location[key] + "<br>");
+			}
+		}
+	</script>
+	
+	<br>
+	
+	<h3>location.href</h3>
+	<p>페이지 이동</p>
+	<button onclick="location.href='http://www.naver.com'">네이버로 이동</button>
+	<button onclick="loaction='http://www.naver.com'">네이버로 이동</button>
+	
+	<br>
+	
+	<h3>reload()</h3>
+	<p>페이지를 새로고침 하는 메소드</p>
+	<button onclick="location=location">새로고침</button>				
+	<button onclick="location.href=location.href">새로고침</button>
+	<button onclick="location.reload();">새로고침</button><!-- 현재 위치에서 새로고침 -->
+	
+	<br>
+	
+	<h3>assign()과 replace()</h3>
+	<p>
+		두 메소드 모두 location자원을 제공한 url의 자원으로 재지정하는 메소드(페이지 이동)<br>
+		replace()는 assign()와 다르게 history객체에 자원을 남기지 않음
+	</p>
+	<button onclick="location.assign('http://google.com');">구글로 이동</button>
+	<button onclick="location.replace('http://google.com');">구글로 이동</button>
+	
+	<hr>
+	
+	<h2>navigator객체</h2>
+	<p>웹 페이지를 실행하고 있는 브라우저에 대한 정보를 가지고 있는 객체</p>
+	<button onclick="test2();">실행확인</button>
+	<div id="area2" class="area"></div>
+	<script>
+		function test2(){
+			var area = document.getElementById('area2');
+			
+			for(var key in navigator){
+				area.innerHTML += (key + " : " + navigator[key] + "<br>");
+			}
+		}
+	</script>
+	
+	<hr>
+	
+	<h2>history객체</h2>
+	<p>브라우저 방문 기록과 관련된 객체</p>
+	<button onclick="history.back();">back</button>
+	<button onclick="history.forward();">forward</button>
+	
+	<br><br>
+	
+	<input type="number" id="num">
+	<button onclick="test3();">go</button>
+	<script>
+		function test3(){
+			var num = document.getElementById('num').value;
+			history.go(num);
+		}
+	</script>
+	
+	<button onclick="history.go(-1);">back</button>
+	<button onclick="history.go(1);">forward</button>
+	
+	<hr>
+	
+	<h2>screen객체</h2>
+	<p>화면(모니터)의 속성을 가지는 객체</p>
+	<button onclick="test4();">실행확인</button>
+	<div id="area4" class="area"></div>
+	<script>
+		function test4(){
+			for(var key in screen){
+				document.getElementById('area4').innerHTML += (key + " : " + screen[key] + "<br>");
+			}
+		}
+	</script>
+</body>
+</html>
