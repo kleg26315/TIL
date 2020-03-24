@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.area{border: 1px solid black; width: 300px; height: 100px; font-size: 40px; color: red;}
+</style>
+</head>
+<body>
+	<h1>window 객체</h1>
+	<p>
+		window객체는 자바스크립트의 최상위 객체이며, BOM과 DOM으로 나뉨<br>
+		BOM(Browser Object Model) : location객체, navigator객체, history객체, screen객체
+		DOM(Document Object Model) : document객체
+	</p>
+	
+	<hr><hr>
+	
+	<h2>window객체</h2>
+	<p>브라우저 창에 대한 설정을 하는 객체</p>
+	<button onclick="test1();">실행1</button>
+	<button onclick="test2();">실행2</button>
+	<script>
+		function test1(){
+			window.open(); // 탭으로 열림
+			
+			// window.open(주소, 이름, 형태, 히스토리 저장방식)
+			window.open('https://www.naver.com', '네이버', 'width=500, height=300', true);
+		}
+		
+		function test2(){
+			//var popup = window.open("", "_self"); // 같은 탭에서 열림
+			var popup = window.open("", "myPopUp", "width=500, height=300");
+			
+			popup.document.write('<html><body><h2>나 팝업이야</h2><body><html>')
+		}
+	</script>
+	
+	<h3>window객체의 timer메소드</h3>
+	<h4>setTimeout()</h4>
+	<button onclick="test3();">실행확인</button>
+	<script>
+		function test3(){
+			// myWindow 변수에 너비 500, 높이 300짜리 팝업 저장하기
+			var myWindow = window.open("", "", "width=500,height=300");
+			
+			myWindow.alert('3초 후에 이 페이지는 종료됩니다.');
+			
+			window.setTimeout(function(){
+				myWindow.close();
+			}, 3000);	// 1초는 1000
+		}
+	</script>
+	
+	<h4>setInterval()</h4>
+	<button onclick="test4();">실행확인</button>
+	<div id="area4" class="area"></div>
+	<script>
+		function test4(){
+			var area4 = document.getElementById('area4');
+			
+			window.setInterval(function(){
+				var date = new Date();
+				
+				area4.innerHTML = date.getHours() + " : " + date.getMinutes()+ " : " + date.getSeconds();
+			}, 100);
+		}
+	</script>
+	
+	<h4>clearInterval()</h4>
+	<button onclick="test5();">실행확인</button>
+	<div id="area5" class="area"></div>
+	<script>
+		function test5(){
+			var area = document.getElementById('area5');
+			
+			var count = 3;
+			
+			var intervalId = window.setInterval(function(){
+				area.innerHTML = 'countdown : ' + count--;
+				
+				if(count < 0){
+					clearInterval(intervalId);
+					area.innerHTML += "종료!";
+				}
+			}, 1000);
+			
+		}
+	</script>
+</body>
+</html>
