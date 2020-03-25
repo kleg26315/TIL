@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.area{border: 1px solid black; min-height: 100px;}
+	table{text-align: center;}
+	th{border: 1px solid black; width: 100px;}
+</style>
+</head>
+<body>
+	<h1>DOM(Document Object Model)</h1>
+	
+	<hr><hr>
+	
+	<h2>Node객체</h2>
+	<h3>텍스트노드가 있는 노드 생성</h3>
+	<button onclick="test1();">실행확인</button>
+	<div id="area1" class="area"></div>
+	<script>
+		function test1(){
+			// element 생성
+			var title = document.createElement('h3');
+			
+			// textNode 생성
+			var textNode = document.createTextNode('안녕');
+			
+			// 요소 노드와 텍스트 노드 연결
+			title.appendChild(textNode);
+			
+			document.getElementById('area1').appendChild(title);
+		}
+	</script>
+	
+	<h3>텍스트노드가 없는 노드 생성</h3>
+	<button onclick="test2();">실행확인</button>
+	<div id="area2" class="area"></div>
+	<script>
+		function test2(){
+			// img태그 생성
+			var imgTest = document.createElement('img');
+			
+			imgTest.src = "https://www.telegraph.co.uk/content/dam/Pets/spark/royal-canin/happy-puppy.jpg?imwidth=1240";
+			imgTest.width="150";
+			imgTest.height = "100";
+			imgTest.myProperty = "123";						// 없는 속성을 넣으면 무시됨
+			imgTest.setAttribute('myProperty', '123');		// 없는 속성을 억지로 넣을 때
+			
+			document.getElementById("area2").appendChild(imgTest);
+		}
+	</script>
+	
+	<hr>
+	
+	<h2>innerHTML</h2>
+	<button onclick="test3();">실행확인</button>
+	<table id="board">
+		<tr>
+			<th>글번호</th>
+			<th>글제목</th>
+			<th>작성자</th>
+			<th>조회수</th>
+			<th>작성일</th>
+		</tr>
+	</table>
+	<script>
+		function test3(){
+			var board = document.getElementById('board');
+			
+			var num = '1';
+			var title = '제목입니다';
+			var user = 'user01';
+			var count = 1;
+			var date = new Date();
+			
+			board.innerHTML += "<tr><td>" + num +"</td>"
+							+"<td>" + title+"</td>"
+							+ "<td>" + user + "</td>"
+							+"<td>" + count+"</td>"
+							+"<td>"+date.getFullYear()+"-" + (date.getMonth()+1) + "-"+date.getDate()+"</td></tr>";
+		}
+	</script>
+	
+	<hr>
+	
+	<h2>스타일 지정</h2>
+	<button onclick="test4();">실행확인</button>
+	<div id="area4" class="area"></div>
+	<script>
+		function test4(){
+			var area4 = document.getElementById('area4');
+			
+			area4.style.backgroundColor = 'black';
+			area4.style.borderRadius = "100px";
+			area4.style.transition = "all 2s";
+		}
+	</script>
+	
+	<hr>
+	
+	<h2>노드 삭제</h2>
+	<button onclick="test5();">실행확인</button>
+	<div id="area5" class="area"></div>
+	<script>
+		function test5(){
+			var area = document.getElementById('area5');
+			area.remove();
+		}
+	</script>
+</body>
+</html>
