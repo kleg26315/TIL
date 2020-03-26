@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>.area{border: 1px solid black; min-height: 100px;}</style>
+</head>
+<body>
+	<h1>이벤트</h1>
+	
+	<hr><hr>
+	
+	<h2>이벤트 설정 방법</h2>
+	<h3>고전 이벤트 모델</h3>
+	<button id="test1">test1() 실행확인</button>
+	<button id="test2">test2() 실행확인</button>
+	<div id="area1" class="area"></div>
+	
+	<script>
+		var area1 = document.getElementById('area1');
+		
+		var test1 = document.getElementById("test1");
+		var test2 = document.getElementById("test2");
+		
+		test1.onclick=function(){
+			area1.innerHTML += 'test1이 실행되었습니다.<br>';
+		}
+		
+		test2.onclick=function(){
+			area1.innerHTML += 'test2이 실행되었습니다.<br>';
+			area1.innerHTML += 'test1의 이벤트를 제거하였습니다.<br>';
+			test1.onclick = null;
+		}
+	</script>
+	
+	<h4>이벤트 발생 객체</h4>
+	<button id="test3">test3() 실행확인</button>
+	<script>
+		var test3 = document.getElementById('test3');
+		
+		test3.onclick = function(){
+			if(this.style.backgroundColor == 'black'){
+				this.style.color = null;
+				this.style.backgroundColor = null;
+			} else{
+				this.style.backgroundColor = 'black';
+				this.style.color = 'white';
+			}
+		}
+	</script>
+	
+	<h3>인라인 모델</h3>
+	<button onclick="test4();">test4() 실행확인</button>
+	<script>
+		function test4(){
+			alert('test4()가 실행되었습니다.');
+		}
+	</script>
+	<button onclick="alert('alert이 실행되었습니다.')">test 실행확인</button>
+	
+	<h3>표준 이벤트 모델</h3>
+	<button id="test5">test5() 실행확인</button>
+	<button id="test6">test6() 실행확인</button>
+	<div id="area6" class="area"></div>
+	<script>
+		var test5 = document.getElementById('test5');
+		var test6 = document.getElementById('test6');
+		var area6 = document.getElementById('area6');
+		
+		test5.addEventListener('click', fn_test5_1);
+		function fn_test5_1(){
+			area6.innerHTML += "test5가 클릭되었습니다.<br>";
+		}
+		
+		test5.addEventListener('mouseover', fn_test5_2);
+		function fn_test5_2(){
+			area6.innerHTML += 'test5에 들어왔습니다.<br>';
+		}
+		
+		test6.addEventListener('mouseover', function(){
+			test5.removeEventListener('click', fn_test5_1);
+			area6.innerHTML += "test6이 실행되면서 test5의 클릭 이벤트를 제거하였습니다.<br>";
+		});
+	</script>
+	
+	<hr>
+	
+	<h2>기본 이벤트 제거1</h2>
+	<form>
+		이름 : <input type="text" name="name" id="name"><br>
+		아이디 : <input type="text" name="userId" id="userId"><br>
+		비밀번호 : <input type="password" name="password" id="password"><br>
+		비밀번호 확인 : <input type="password" name="passwordConfirm" id="passwordConfirm"><br>
+		<input type="submit" value="제출" onclick="return test7();">
+	</form>
+	<script>
+		function test7(){
+			// 이름, 아이디, 비밀번호, 비밀번호 확인에 써있는 값을 모두 가져와 console에 띄우고
+			// 비밀번호와 비밀번호 확인이 같지 않으면 '비밀번호가 틀립니다.'가 알림창에 뜨면서 비밀번호 확인에 커서가 올라가고
+			// 비밀번호와 비밀번호 확인이 같으면 '비밀번호가 일치합니다.'가 알림창에 뜬다.
+			
+			var name = document.getElementById('name');
+			var userId = document.getElementById('userId');
+			var password = document.getElementById('password');
+			var passwordConfirm = document.getElementById('passwordConfirm');
+			
+			console.log(name);
+			console.log(userId);
+			console.log(password);
+			console.log(passwordConfirm);
+			
+			if(password.value == passwordConfirm.value){
+				alert('비밀번호가 일치합니다.');
+				return true;
+			} else{
+				alert('비밀번호가 틀립니다.');
+				passwordConfirm.select();	// 드래그되어있는 상태로
+				return false;
+			}
+		}
+	</script>
+	
+	<h2>기본 이벤트 제거2</h2>	<!-- 이 방법을 더 선호 -->
+	<form onsubmit="return test8();">
+		이름 : <input type="text" name="name2" id="name2"><br>
+		아이디 : <input type="text" name="userId2" id="userId2"><br>
+		비밀번호 : <input type="password" name="password2" id="password2"><br>
+		비밀번호 확인 : <input type="password" name="passwordConfirm2" id="passwordConfirm2"><br>
+		<input type="submit" value="제출">
+	</form>
+	<script>
+		function test8(){
+			// 이름, 아이디, 비밀번호, 비밀번호 확인에 써있는 값을 모두 가져와 console에 띄우고
+			// 비밀번호와 비밀번호 확인이 같지 않으면 '비밀번호가 틀립니다.'가 알림창에 뜨면서 비밀번호 확인에 커서가 올라가고
+			// 비밀번호와 비밀번호 확인이 같으면 '비밀번호가 일치합니다.'가 알림창에 뜬다.
+			
+			var name = document.getElementById('name2');
+			var userId = document.getElementById('userId2');
+			var password = document.getElementById('password2');
+			var passwordConfirm = document.getElementById('passwordConfirm2');
+			
+			console.log(name);
+			console.log(userId);
+			console.log(password);
+			console.log(passwordConfirm);
+			
+			if(password.value == passwordConfirm.value){
+				alert('비밀번호가 일치합니다.');
+				return true;
+			} else{
+				alert('비밀번호가 틀립니다.');
+				passwordConfirm.select();	// 드래그되어있는 상태로
+				return false;
+			}
+		}
+	</script>
+</body>
+</html>
