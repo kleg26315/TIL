@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>.area{border: 1px solid black; min-height: 150px;}</style>
+</head>
+<body>
+	<h1>정규표현식</h1>
+	<h2>정규표현식 객체 생성</h2>
+	<button onclick="test1();">확인하기</button>
+	<div id="area1" class="area"></div>
+	<script>
+		function test1(){
+			var area1 = document.getElementById('area1');
+			
+			// 정규식 변수 선언 방법
+			// 1. new
+			//var regExp = new RegExp('script');
+			//var regExp = new RegExp(/script/);	// 총 2가지, 모두 사용 가능
+			
+			// 2. 스크립트 작성
+			// var regExp = 'script'; // 에러
+			var regExp = /script/;	  // 이거만 가능
+			
+			var str = 'javascript jquery ajax';
+			
+			// 1. 정규표현식 객체 메소드 이용
+			// test() : 해당 글자가 있으면 true, 없으면 false 
+			area1.innerHTML += "test() 함수 사용 : " + regExp.test(str) + "<br>";
+			// exec() : 해당 글자가 있으면 그 값 반환, 없으면 null
+			area1.innerHTML += "exec() 함수 사용 : " + regExp.exec(str) + "<br>";
+			console.log(regExp.exec(str));
+			
+			// 2. string메소드 이용
+			// match() : 해당 글자가 있으면 그 값 반환
+			area1.innerHTML += "match()함수 이용 : " + str.match(regExp) + "<br>";
+			// replace() : 해당 글자가 있으면 원하는 문자로 대체
+			area1.innerHTML += "replace()함수 이용 : " + str.replace(regExp, '스크립트')+ "<br>";
+			// search() : 인덱스 반환, 없으면 -1 반환
+			area1.innerHTML += "search()함수 이용 : " + str.search(regExp)+ "<br>";
+			// split() : 해당 글자를 기준으로 배열로 나눔
+			area1.innerHTML += "search()함수 이용 : " + str.split(regExp)+ "<br>";
+			console.log(str.split(regExp));
+		}
+	</script>
+	
+	<h2>$&, $`, $'</h2>
+	<button onclick="test2();">실행확인</button>
+	<div id="area2" class="area"></div>
+	<script>
+		function test2(){
+			var area = document.getElementById('area2');
+			var regExp = /as/;
+			
+			var str = "javascript jquery ajax sass";
+			
+			area.innerHTML += 'str : ' + str + "<br>";
+			
+			// $& : 제일 처음 일치하는 문자열을 의미
+			area.innerHTML += '$& : ' + str.replace(regExp, '($&)') + "<br>";
+			// $` : 매칭된 문자열의 앞 문자열 의미
+			area.innerHTML += '$` : ' + str.replace(regExp, '($`)') + "<br>";
+			// $' : 매칭된 문자열의 뒷 문자열 의미
+			area.innerHTML += "$' : " + str.replace(regExp, "($')") + "<br>";
+			
+			var output = str.replace(regExp, function(val){
+				return '+++' + val + '+++';
+			});
+			
+			area.innerHTML += "str.replace() : " + output; 
+		}
+	</script>
+	
+	<hr>
+	
+	<h2>()소괄호와 |</h2>
+	<p>여러 문자열 중에 해당하는 것을 검색하기 위해 (str1|str2|str3)식으로 사용 가능</p>
+	<button onclick="test3();">실행확인</button>
+	<div id="area3" class="area"></div>
+	<script>
+		function test3(){
+			var src = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'];
+			
+			var area3 = document.getElementById('area3');
+			//var regExp = /(금요일|토요일|일요일)/;
+			var regExp = /(금|토|일)요일/;
+			for(var i=0; i<src.length; i++){
+				area3.innerHTML += src[i] + " : " + regExp.test(src[i]) + "<br>";
+			}
+			
+		}
+	</script>
+	
+	<hr>
+	
+	<h2>플래그 문자</h2>
+	<p>
+		g : 전역비교 수행, 이 flag가 없으면 처음 매칭만 처리<br>
+		i : 대소문자를 가리지 않고 비교하되 처음만 처리
+	</p>
+	<button onclick="test4();">실행확인</button>
+	<div id="area4" class="area"></div>
+	<script>
+		function test4(){
+			var regExp0 = /a/;
+			var regExp1 = /a/g;
+			var regExp2 = /a/i;
+			var regExp3 = /a/gi;
+			
+			var str = "JAvaScript JQuery Ajax\nJAvaScript JQuery Ajax";
+			
+			var area4 = document.getElementById('area4');
+			
+			area4.innerHTML += "/a/ : " + str.replace(regExp0, '($&)') + "<br>";
+			area4.innerHTML += "/a/g : " + str.replace(regExp1, '($&)') + "<br>";
+			area4.innerHTML += "/a/i : " + str.replace(regExp2, '($&)') + "<br>";
+			area4.innerHTML += "/a/gi : " + str.replace(regExp3, '($&)') + "<br>";
+		}
+	</script>
+	
+	<hr>
+	
+	<h2>앵커 문자</h2>
+	<p>문자열의 앞^과 뒤$를 구분해주는 정규 표현식 기호</p>
+	<button onclick="test5();">실행확인</button>
+	<div id="area5" class="area"></div>
+	<script>
+		function test5(){
+			var area5 = document.getElementById('area5');
+			
+			var str = "JavaScript\nJQuery\nAjax";
+			var regExp = /^j/gi;
+			var regExp2 = /^j/gim;	// m : 앵커와 같이 붙었을 때 자주 사용, 여러 줄을 검사
+			area5.innerHTML += "<h3>" + str + "</h3>";
+			area5.innerHTML += "/j/gi : " + str.replace(regExp, '($&)') + "<br>";
+			area5.innerHTML += "/^j/gim : " + str.replace(regExp2, '($&)') + "<br>";
+			
+			var str2 = "JavaScript\nJQuery\mShellScript\nAjax";
+			var regExp3 = /ipt$/gi;
+			var regExp4 = /ipt$/gim;	// m : 여러 줄 검사
+			area5.innerHTML += "<h3>" + str2 + "</h3>";
+			area5.innerHTML += "/ipt$/gi : " + str2.replace(regExp3, '($&)') + "<br>";
+			area5.innerHTML += "/ipt$/gim : " + str2.replace(regExp4, '($&)') + "<br>";
+		}
+	</script>
+	
+	<hr>
+	
+	<h2>수량 문자</h2>
+	<p>
+		a* : a가 0개 이상<br>
+		a+ : a가 적어도 1개 이상<br>
+		a? : a가 0개 또는 1개
+	</p>
+	<button onclick="test6();">실행확인</button>
+	<div id="area6" class="area"></div>
+	<script>
+		function test6(){
+			var area6 = document.getElementById('area6');
+			var src = 'aabc abc bc';
+			
+			var regExp1 = /a*b/g;
+			area6.innerHTML += regExp1 + " : " + src.replace(regExp1, '($&)') + "<br>";
+			var regExp2 = /a+b/g;
+			area6.innerHTML += regExp2 + " : " + src.replace(regExp2, '($&)') + "<br>";
+			var regExp3 = /a?b/g;
+			area6.innerHTML += regExp3 + " : " + src.replace(regExp3, '($&)') + "<br>";
+		}
+	</script>
+	
+	<h3>{}를 이용해서 수량표현</h3>
+	<p>
+		a{5} : a가 5개<br>
+		a{2, 5} : a가 2~5개<br>
+		a{2,} : a가 2개 이상<br>
+		a{,2} : a가 2개 이하<br>
+	</p>
+	<button onclick="test7();">실행확인</button>
+	<div id="area7" class="area"></div>
+	<script>
+		function test7(){
+			var area7 = document.getElementById('area7');
+			var src = "AA ABA ABBA ABBBA";
+			
+			var regExp11 = /AB*A/g;
+			area7.innerHTML += regExp11 + " : " + src.replace(regExp11, '($&)') + "<br>";
+			var regExp12 = /AB{0,}A/g;
+			area7.innerHTML += regExp12 + " : " + src.replace(regExp12, '($&)') + "<br>";
+		
+			var regExp21 = /AB+A/g;
+			area7.innerHTML += regExp21 + " : " + src.replace(regExp21, '($&)') + "<br>";
+			var regExp22 = /AB{1,}A/g;
+			area7.innerHTML += regExp22 + " : " + src.replace(regExp22, '($&)') + "<br>";
+			
+			var regExp31 = /AB?A/g;
+			area7.innerHTML += regExp31 + " : " + src.replace(regExp31, '($&)') + "<br>";
+			var regExp32 = /AB{0,1}A/g;
+			area7.innerHTML += regExp31 + " : " + src.replace(regExp31, '($&)') + "<br>";
+		}
+	</script>
+	
+	<hr>
+	
+	<h2>메타문자와 []대괄호</h2>
+	<p>
+		각각의 메타문자는 특별한 의미의 문자열 양식을 나타내고<br>
+		대괄호 묶음 안의 내용은 문자의 범위를 나타냄<br>
+		대괄호 안의 ^은 시작이 아니라 특정 문자열 제외를 뜻함
+	</p>
+	<button onclick="test8();">실행확인</button>
+	<div id="area8" class="area"></div>
+	<script>
+		function test8(){
+			var area8 = document.getElementById('area8');
+			
+			var str1 = "JavaScript JQuery Ajax";
+			var str2 = "123JavaScript";
+			
+			var regExp1 = /[aj]/gi;
+			area8.innerHTML += regExp1 + " : " + str1.replace(regExp1, '($&)') + "<br>";
+			var regExp2 = /[^aj]/gi;
+			area8.innerHTML += regExp2 + " : " + str1.replace(regExp2, '($&)') + "<br>";
+			var regExp3 = /[a-z]/g;
+			area8.innerHTML += regExp3 + " : " + str2.replace(regExp3, '($&)') + "<br>";
+			var regExp4 = /[A-Z]/g;
+			area8.innerHTML += regExp4 + " : " + str2.replace(regExp4, '($&)') + "<br>";
+			var regExp5 = /[0-9]/g;
+			area8.innerHTML += regExp5 + " : " + str2.replace(regExp5, '($&)') + "<br>";
+			var regExp6 = /[a-z0-9]/g;
+			area8.innerHTML += regExp6 + " : " + str2.replace(regExp6, '($&)') + "<br>";
+		}
+	</script>
+	
+	<h3>추가 메타 문자</h3>
+	<p>
+		\d : 숫자<br>
+		\w : 영어, 숫자, _(언더바) 한글/공백 제외<br>
+		\s : 공백문자(띄어쓰기, 탭, 줄바꿈)<br><br>
+		\D : 숫자만 빼고 다<br>
+		\W : 영어, 숫자, _ 뺴고 다<br>
+		\S : 공백문자 빼고 다<br>
+	</p>
+	<button onclick="test9();">실행확인</button>
+	<div id="area9" class="area"></div>
+	<script>
+		function test9(){
+			var area9 = document.getElementById('area9');
+			var src = "A1 B2 c3 d_4 e:5` ffGG77--__--	가\n나\n다";
+			area9.innerHTML += "<h2>" + src + "</h2>";
+			
+			var regExp1 = /\d/g;
+			area9.innerHTML += regExp1 + " : " + src.replace(regExp1, '($&)') + "<br>";
+			var regExp2 = /\w/g;
+			area9.innerHTML += regExp2 + " : " + src.replace(regExp2, '($&)') + "<br>";
+			var regExp3 = /\s/g;
+			area9.innerHTML += regExp3 + " : " + src.replace(regExp3, '($&)') + "<br>";
+
+			var regExp4 = /\D/g;
+			area9.innerHTML += regExp4 + " : " + src.replace(regExp4, '($&)') + "<br>";
+			var regExp5 = /\W/g;
+			area9.innerHTML += regExp5 + " : " + src.replace(regExp5, '($&)') + "<br>";
+			var regExp6 = /\S/g;
+			area9.innerHTML += regExp6 + " : " + src.replace(regExp6, '($&)') + "<br>";
+			
+			// 문제 : 메타문자를 사용하지 않고 []으로 표현하기
+			var regExp7 = /[0-9]/g;
+			area9.innerHTML += regExp7 + " : " + src.replace(regExp7, '($&)') + "<br>";
+			var regExp8 = /[a-zA-Z0-9_]/g;
+			area9.innerHTML += regExp8 + " : " + src.replace(regExp8, '($&)') + "<br>";
+			var regExp9 = /[ 	\n]/g;
+			area9.innerHTML += regExp9 + " : " + src.replace(regExp9, '($&)') + "<br>";
+
+			var regExp10 = /[^0-9]/g;
+			area9.innerHTML += regExp10 + " : " + src.replace(regExp10, '($&)') + "<br>";
+			var regExp11 = /[^a-z^A-Z^0-9^_]/g;
+			area9.innerHTML += regExp11 + " : " + src.replace(regExp11, '($&)') + "<br>";
+			var regExp12 = /[^ ^	^\n]/g;
+			area9.innerHTML += regExp12 + " : " + src.replace(regExp12, '($&)') + "<br>";			
+		}
+	</script>
+	
+	<hr>
+	
+	<h2>Escaping</h2>
+	<p>예약어를 실제 문자 값으로 사용하려면 백슬래시를 이용하여 이스케이핑 해야함</p>
+	<button onclick="escape();">실행확인</button>
+	<div id="area-escape" class="area"></div>
+	<script>
+		function escape(){
+			var area = document.getElementById('area-escape');
+			var src = '$12$ \\-\\ $25$';
+			
+			area.innerHTML += "<h2>" + src + "</h2>";
+			area.innerHTML += '/$/ : ' + src.replace(/$/, '($&)') + "<br>";
+			area.innerHTML += '/\\$/g : ' + src.replace(/\$/g, '($&)') + "<br>";
+			area.innerHTML += '/\\$$/g : ' + src.replace(/\$$/g, '($&)') + "<br>";
+			area.innerHTML += '/\\\\/g : ' + src.replace(/\\/g, '($&)') + "<br>";
+		}
+	</script>
+	
+	<hr>
+	
+	<h2>포인트 .</h2>
+	<p>임의의 한 글자</p>
+	<button onclick="point();">실행확인</button>
+	<div id="area-point" class="area"></div>
+	<script>
+		function point(){
+			var area = document.getElementById('area-point');
+			var regExp1 = /a.b/;
+			area.innerHTML += regExp1 + " : ab => " +regExp1.test('ab') + "<br>";
+			area.innerHTML += regExp1 + " : a아b => " +regExp1.test('a아b') + "<br>";
+			area.innerHTML += regExp1 + " : a야호b => " +regExp1.test('a야호b') + "<br><br>";
+			
+			var regExp2 = /xy./;
+			area.innerHTML += regExp2 + " : xyz => " +regExp2.test('xyz') + "<br>";
+			area.innerHTML += regExp2 + " : wxy  => " +regExp2.test('wxy ') + "<br><br>";	// 띄어쓰기도 글자로 봐서 true
+			
+			var regExp3 = /in.$/;
+			area.innerHTML += regExp3 + " : going => " + regExp3.test('going') + "<br>";
+			area.innerHTML += regExp3 + " : inner => " + regExp3.test('inner') + "<br>";
+		}
+	</script>
+	
+	<hr>
+	
+	<h2>예제</h2>
+	<h3>주민등록번호</h3>
+	<p>
+		주민번호의 유효성 체크<br>
+		생년생월생일 - 성별숫자6
+	</p>
+	<input type="text" id="ssn">&nbsp; <button onclick="validate();">실행확인</button>
+	<script>
+		function validate(){
+			// 정규표현식을 만들고 test()메소드를 사용해 표현이 일치하면 알림창으로 '정상입력!' 출력, 일치하지 않으면 '잘못입력!' 출력
+			var ssn = document.getElementById('ssn').value;
+			
+			var regExp1 = /[0-99]/;
+			var regExp2 = /[1-12]/;
+			var regExp3 = /[1-31]/;
+			var regExp4 = /[1-2]/;
+
+			if(regExp1.test(ssn.substring(0,2)) &&
+					regExp2.test(ssn.substring(2,4)) &&
+					regExp3.test(ssn.substring(4,6)) &&
+					ssn.substring(6,7) == '-' &&
+					regExp4.test(ssn.substring(7,8)) &&
+					ssn.substring(8,).length == 6
+			){
+				alert('정상입력!');
+			}else{
+				alert('잘못입력!');
+			}
+			
+			//var regExp5 = /^[0-99]^[1-12]^[1-31]-^[1-2]......$/;
+			
+			//if(regExp5.test(ssn)){
+			//	alert('정상입력!');
+			//}else{
+			//	alert('잘못입력!');
+			//}
+		}
+	</script>
+	
+</body>
+</html>
