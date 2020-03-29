@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.area{border: 1px solid red; width: 100%; height: 200px;}
+</style>
+</head>
+<body>
+	<h1>Pratice1</h1>
+	
+	<fieldset>
+		<legend>취미</legend>
+		<table id="table">
+			<tr>
+				<td><input type="checkbox" name="hobby" id="전체선택" onclick="checkall();"> <label>전체선택</label></td>	
+				<td><input type="checkbox" name="hobby" id="종합" onclick="check();"> <label>종합</label></td>
+				<td><input type="checkbox" name="hobby" id="소설" onclick="check();"> <label>소설</label></td>
+				<td><input type="checkbox" name="hobby" id="시/에세이" onclick="check();"> <label>시/에세이</label></td>
+				<td><input type="checkbox" name="hobby" id="경제/경영" onclick="check();"> <label>경제/경영</label></td>
+				<td><input type="checkbox" name="hobby" id="자기계발" onclick="check();"> <label>자기계발</label></td>
+				<td><input type="checkbox" name="hobby" id="아동" onclick="check();"> <label>아동</label></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="checkbox" name="hobby" id="여행" onclick="check();"> <label>여행</label></td>
+				<td><input type="checkbox" name="hobby" id="과학" onclick="check();"> <label>과학</label></td>
+				<td><input type="checkbox" name="hobby" id="역사/문화" onclick="check();"> <label>역사/문화</label></td>
+				<td><input type="checkbox" name="hobby" id="외국어" onclick="check();"> <label>외국어</label></td>
+				<td><input type="checkbox" name="hobby" id="컴퓨터" onclick="check();"> <label>컴퓨터</label></td>
+				<td><input type="checkbox" name="hobby" id="만화" onclick="check();"> <label>만화</label></td>
+			</tr>
+		</table>
+	</fieldset>
+	
+	<br>
+	<button onclick="test1();">카테고리 선택</button>
+	<div class="area" id="area1"></div>
+	<script>
+		function checkall(){
+			var hobby = document.getElementsByName('hobby');
+			if(hobby[0].checked==true){
+				for(var i in hobby){
+					hobby[i].checked = true;
+				}
+			} else{
+				for(var i in hobby){
+					hobby[i].checked = false;
+				}
+			}
+		}
+		function check(){
+			var hobby = document.getElementsByName('hobby');
+			var check = true;
+			for(var i=1; i<hobby.length; i++){
+				if(hobby[i].checked == false){
+					hobby[0].checked = false;
+				}
+			}
+			
+			for(var i=1; i<hobby.length; i++){
+				if(hobby[i].checked == false){
+					check = false;
+					break;
+				}
+			}
+			
+			if(check == true){
+				hobby[0].checked = true;
+			}
+		}
+		
+		function test1(){
+			var area = document.getElementById('area1');
+			var str = '';
+			var hobby = document.getElementsByName('hobby');
+			
+			for(var i=0; i<hobby.length; i++){
+				if(i == 0) continue;
+				if(hobby[i].checked == true){
+					str += hobby[i].id + " ";
+				}
+			}
+			area.innerHTML = str;
+		}
+	</script>
+</body>
+</html>
