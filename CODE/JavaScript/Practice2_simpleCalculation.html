@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Practice2</h1>
+	
+	<input type="text" id="op1">
+	<select name="sel">
+		<option value="+" id="+">+</option>
+		<option value="-" id="-">-</option>
+		<option value="*" id="*">*</option>
+		<option value="/" id="/">/</option>
+		<option value="%" id="%">%</option>
+	</select>
+	<input type="text" id="op2">
+	
+	<button onclick="test1();">=</button>
+	<input type="text" id="result">
+	
+	<script>
+		function test1(){
+			var op1 = parseInt(document.getElementById('op1').value);
+			var op2 = parseInt(document.getElementById('op2').value);
+			var result = document.getElementById("result");
+			var sel = document.getElementsByName('sel');
+			var select = '';
+
+			select = sel[0].value;
+			
+			switch(select){
+			case '+': result.value = op1 + op2; break;
+			case '-': result.value = op1 - op2; break;
+			case '*': result.value = op1 * op2; break;
+			case '/': result.value = op1 / op2; break;
+			case '%': result.value = op1 % op2; break;
+			}
+			
+			if(result.value == Infinity || result.value == -Infinity
+					|| isNaN(result.value)){
+				result.value = '연산불가';
+				result.style.backgroundColor = 'red';
+				result.style.color = 'white';
+			}
+		}
+		
+	</script>
+</body>
+</html>

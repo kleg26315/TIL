@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+   <h1>Practice3</h1>
+   
+   <fieldset>
+      <legend>회원가입</legend>
+      아이디 : <input type="text" id="id" onkeyup="test();">
+      <label id="idConfirm"></label>
+      <br><br>
+      비밀번호 : <input type="password" id="pwd">
+      <br><br>
+      비밀번호 확인 : <input type="password" id="pwd2" onblur="test2();">
+      <label id="pwdConfirm"></label>
+      <br><br>
+      이름 : <input type="text" id="name">
+      <br><br>
+      <button onclick="enroll();">회원가입</button>
+   </fieldset>
+   
+   <script>
+      function test(){
+         var idConfirm = document.getElementById('idConfirm');
+         var id = document.getElementById('id');
+         var ids =['user01'];
+         
+         if(id.value==''){
+            idConfirm.innerHTML = '';
+         } else{
+            idConfirm.innerHTML = '&nbsp;사용할수 있는 아이디입니다.';
+            idConfirm.style.color = 'green';
+         }
+         
+         for(var i in ids){
+            if(id.value == ids[i]){
+               idConfirm.innerHTML = '&nbsp;이미 존재하는 아이디입니다.';
+               idConfirm.style.color = 'red';
+            }
+         }
+      }
+      
+      function test2(){
+         var pwdConfirm = document.getElementById('pwdConfirm');
+         var pwd = document.getElementById('pwd');
+         var pwd2 = document.getElementById('pwd2');
+         
+         if(pwd.value == pwd2.value){
+            pwdConfirm.innerHTML = '&nbsp;비밀번호가 일치합니다.';
+            pwdConfirm.style.color = 'green';
+         } else{
+            pwdConfirm.innerHTML = '&nbsp;비밀번호가 일치하지 않습니다.';
+            pwdConfirm.style.color = 'red';
+         }
+      }
+      function enroll(){
+         var id = document.getElementById('id');
+         var pwd = document.getElementById('pwd');
+         var pwd2 = document.getElementById('pwd2');
+         var name = document.getElementById('name');
+         var idConfirm = document.getElementById('idConfirm');
+         var pwdConfirm = document.getElementById('pwdConfirm');
+         
+         if(id==''){
+            alert('아이디를 입력해주세요');
+            id.focus();
+         } else if(pwd==''){
+            alert('비밀번호를 입력해주세요');
+            pwd.focus();
+         } else if(pwd2==''){
+            alert('비밀번호 확인을 입력해주세요');
+            pwd2.focus();
+         } else if(name==''){
+            alert('이름을 입력해주세요');
+            name.focus();
+         } else{
+            if(idConfirm.innerHTML == '&nbsp;이미 존재하는 아이디입니다.'){
+               alert('사용할 수 없는 아이디입니다.')
+               id.value = '';
+               idConfirm.innerHTML = '';
+               id.focus();
+            }
+            else if(pwdConfirm.innerHTML == '&nbsp;비밀번호가 일치하지 않습니다.'){
+               alert('비밀번호가 일치하지 않습니다.');
+               pwd2.value = '';
+               pwdConfirm.innerHTML = '';
+               pwd2.focus();
+            } else{
+               alert(name.value+'님, 회원가입이 성공적으로 완료되었습니다^^');
+               id.value = '';
+               pwd.value = '';
+               pwd2.value = '';
+               name.value = '';
+               idConfirm.innerHTML = '';
+               pwdConfirm.innerHTML = '';
+            }
+         }
+      }
+   </script>
+</body>
+</html>
