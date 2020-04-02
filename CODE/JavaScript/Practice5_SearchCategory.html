@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.area{border: 1px solid lightgray; width: 530px; min-height: 50px; background: lightgray; color: black; padding: 10px;}
+</style>
+</head>
+<body>
+	<h1>Practice5</h1>
+	<fieldset style="width: 500px;">
+		<legend style="text-align: center;">검색할 항목을 선택하세요.</legend>
+		
+		<div style="text-align: center;">
+			<input type="radio" id="제목" name="search" onclick="test();"><label>제목</label>
+			<input type="radio" id="날짜" name="search" onclick="date();"><label>날짜</label>
+			<input type="radio" id="작성자" name="search" onclick="writer();"><label>작성자</label>
+		</div>
+	</fieldset>
+	
+	<br>
+	
+	<div id="area1" class="area" style="display: none;"><label>검색할 제목을 입력하세요 : <br></label>
+		<input type="text" id="searchTitle" style="width: 400px;">&nbsp;<button>검색</button>
+	</div>
+	
+	<div id="area2" class="area" style="display: none;"><label>검색할 날짜를 입력하세요 : <br></label>
+		<input type="date"> - <input type="text" value="연도-월-일">&nbsp;<button>검색</button>
+	</div>
+	
+	<div id="area3" class="area" style="display: none;"><label>검색할 작성자 아이디를 입력하세요 : <br></label>
+		<input type="text" id="searchWriter" style="width: 210px;">&nbsp;<button>검색</button>
+	</div>
+	
+	<script>
+		var area1 = document.getElementById('area1');	
+		var area2 = document.getElementById('area2');	
+		var area3 = document.getElementById('area3');
+		
+		function test(){
+			area1.style.display = "block"; 
+			area2.style.display = "none"; 
+			area3.style.display = "none"; 
+		}
+		
+		function date(){
+			area1.style.display = "none";
+			area2.style.display = "block"; 
+			area3.style.display = "none"; 
+		}
+		
+		function writer(){
+			area1.style.display = "none";
+			area2.style.display = "none"; 
+			area3.style.display = "block"; 
+		}
+	</script>
+</body>
+</html>
