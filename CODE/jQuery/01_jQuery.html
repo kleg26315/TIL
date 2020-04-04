@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>-->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<style>
+	
+</style>
+</head>
+<body>
+	<h1>jQuery</h1>
+	<p>
+		존 레식에 의해 개발된 경량 JavaScript 라이브러리<br>
+		JavaScript코드를 손쉽게 구현하기 위해 개발
+	</p>
+	
+	<hr>
+	
+	<h2>jQuery 개요</h2>
+	<h3>jQuery의 장점</h3>
+	<ol>
+		<li>DOM과 관련된 처리를 쉽게 구현 가능</li>
+		<li>Ajax통신, 이벤트 처리 등을 폭 넓게 지원</li>
+		<li>별도의 플러그인을 통해 차트, 슬라이드 쇼, 테이블 등 간단히 구현 가능</li>
+	</ol>
+	
+	<h3>jQuery 연결</h3>
+	<ol id="ol-connect">
+		<li>jQuery홈페이지에서 js파일을 다운로드 받아 연결하는 방법</li>
+		<li>CDN(Content Delivery Network)을 통한 연결</li>
+	</ol>
+	<script>
+		$('#ol-connect').css('background', 'beige');
+		// Uncaught ReferenceError: $ is not defined
+	</script>
+	
+	<h3>$(document).ready()</h3>
+	<p id="p-ready">
+		페이지를 로드한 후 ready메소드 실행 = JavaScript의 window.onload<br>
+		하지만 자바스크립트의 window.onload속성은 복수 개 설정 시
+		마지막에 쓴 것으로 덮어지지만<br>
+		jQuery는 복수 개 설정하면 모두 연달아 실행됨
+	</p>
+	<script>
+		// 방법 1
+		jQuery(document).ready(function(){
+			$('#p-ready').css('background', 'pink');
+		});
+		
+		// 방법 2
+		$(document).ready(function(){
+			$('#p-ready').css('background', 'skyblue');
+		});
+		
+		// 방법 3
+		jQuery(function(){
+			$('#p-ready').css('background', 'yellowgreen');
+		});
+		
+		// 방법 4
+		$(function(){
+			$('#p-ready').css('background', 'gold');
+		});
+	</script>
+	
+	<hr>
+	
+	<h2>선택자와 메소드</h2>
+	<p>선택자를 지정하고 메소드를 통해 jQuery적용</p>
+	<div>
+		<ul>
+			<li>치킨</li>
+			<li>불고기 피자</li>
+			<li>치즈 피자</li>
+			<li>파인애플 피자</li>
+			<li>콤비네이션 피자</li>
+		</ul>
+		<h3>피자집</h3>
+	</div>
+	<label>이름 : </label>
+	<input type="text" id="name" name="name" class="order"><br>
+	<label>주문 비밀번호 : </label>
+	<input type="password" id="pwd" name="pwd" class="order important"><br>
+	<label>핸드폰 번호 : </label>
+	<input type="number" name="number1">-<input type="number" name="number2">-<input type="number" name="number3"><br>
+	
+	<label>주소 : </label>
+	<input type="text" id="addr" name="addr" class="order" size=80><br>
+	
+	<label>치킨 주문 : </label>
+	<input type="text" id="chicken" class="order" list="chickenList">
+	<datalist id="chickenList">
+		<option value="original">후라이드 치킨</option>
+		<option value="source">양념 치킨</option>
+		<option value="half">후라이드 반 양념 반</option>
+	</datalist>
+	
+	<label>피자 주문 : </label>
+	<input type="checkbox" name="pizza">불고기 피자&nbsp;&nbsp;
+	<input type="checkbox" name="pizza">치즈 피자&nbsp;&nbsp;
+	<input type="checkbox" name="pizza">파인애플 피자&nbsp;&nbsp;
+	<input type="checkbox" name="pizza">콤비네이션 피자&nbsp;&nbsp;<br>
+	
+	<label>일회용품 : </label>
+	<input type="radio" name="product1" id="need" checked>필요함
+	<input type="radio" name="product1" id="noneed">필요하지 않음<br>
+	
+	<label>파일 : </label>
+	<input type="file"><br>
+	
+	<label>이미지 : </label>
+	<input type="image" src="../images/flower1.PNG" height="200px"><br>
+	
+	<br>
+	
+	<input type="button" value="클릭">
+	<input type="submit" value="제출">
+	<input type="reset" value="리셋">
+	<input type="text" disabled><input type="button" value="비활성화" disabled>	
+	
+	<br><br>
+	
+	<table>
+		<tr><th>이름</th><th>혈액형</th><th>고향</th></tr>
+		<tr><td>김경섭</td><td>AB형</td><td>서울</td></tr>
+		<tr><td><a>서정호</a></td><td>O형</td><td>구미</td></tr>
+		<tr><td><a href="#">박근오</a></td><td>A형</td><td>서울</td></tr>
+		<tr><td>이선제</td><td>AB형</td><td>홍천</td></tr>
+		<tr><td>한호성</td><td>AB형</td><td>속초</td></tr>
+		<tr><td>전희은</td><td>B형</td><td>광주</td></tr>
+		<tr><td colspan="2">총원</td><td>6</td></tr>
+	</table>
+	
+	<script>
+		$(function(){
+			// 전체 선택자 * : HTML페이지에 있는 모든 문서 객체 선택
+			//$('*').css('color', 'white');
+			// css() : 문서 객체의 스타일을 변경하거나 검사할 때 사용, 여러 속성 설정 가능
+			console.log($('*').css('color'));
+			
+			// 태그 선택자
+			// 1. 태그 하나 선택
+			$('label').css('font-weight', 'bold');
+			// 2. 태그 여러 개 선택
+			$('label, p').css('background', 'beige');
+			
+			// 아이디 선택자
+			console.log($('#name'));
+			$('#name').attr('placeholder', '이름을 입력해주세요.');
+			// attr() : 문서 객체의 특정 속성 값을 알아내거나 속성을 추가할 때 사용
+			//			속성 값이 setting되어 있지 않으면 undefined 리턴
+			console.log($('#name').attr('placeholder'));
+			console.log($('#name').attr('size'));	// size속성 값 undefinded
+			$('#name').attr('size', '100');
+			console.log($('#name').attr('size'));	// 100
+			$('#name').removeAttr('size');			
+			// 객체 속성 제거(여러 개를 지울 수도 있음)
+			// .removeAttr().removeAttr()
+			
+			// 클래스 선택자
+			$('.order').css('background', 'rgba(0, 0, 255, 0.1)');
+			$('.order.important').css('background', 'tomato');
+			
+			// 자식 선택자와 후손 선택자
+			// 자식 선택자 : >
+			$('div>h3').css('color', 'brown');
+			// 후손 선택자 : 
+			$('div h3').css('background', 'orange');
+			
+			// 속성 선택자
+			// 요소[속성] : 특정 속성을 가지고 있는 객체 선택
+			$('input[size]').css('background', 'yellowgreen');
+			// 요소[속성=값] : 속성 안의 값이 특정 값과 같은 객체 선택
+			$('input[type=number]').attr('placeholder', '번호필수입력');
+			// 요소[속성~=값] : 속성 안에 값이 특정 값을 단어로써 포함하는 객체 선택(띄어쓰기로 구분)
+			$('input[class~=important]').val('12345');
+			// 요소[속성*=값] : 속성 안의 값이 특정 값을 포함하는 객체 선택
+			$('input[name*=d]').css('background','pink');
+			// 요소[속성^=값] : 속성 안의 값이 특정 값으로 시작하는 객체 선택
+			$('input[name^=n]').css('background', 'skyblue');
+			// 요소[속성$=값] : 속성 안의 값이 특정 값으로 끝나는 객체 선택
+			$('input[class$=der]').css('background', 'rgba(0, 100, 0 ,0.1)');
+			
+			// input타입 필터 선택자
+			$('input:text').css('background', 'white');
+			$('input:password').css('background', 'gold');
+			$('input:checkbox').prop('checked', true).css({"width":"30px", "height":"30px"});
+			// prop() : 속성값의 여부를 true/false로 리턴
+			// attr() vs prop()
+			// attr() : 요소가 가지는 속성 값이나 정보 등을 조회/변경
+			//		placeholder, style, src, rowspan
+			// prop() : 요소가 가지는 실제적인 상태 제어
+			//		활성화 상태, 선택 여부
+			$('input:radio').css({"width":"30px", "height":"30px"});
+			$('input:file').css({"background":"blue", "color":"white"});
+			$('input:image').mouseenter(function(){
+				$(this).attr('src', '../images/river1.PNG');
+			}).mouseout(function(){
+				$(this).attr('src', '../images/flower1.PNG');
+			});
+			
+			// input타입이 button인 요소에 이름이 지금 '클릭'이라고 되어있는데
+			// 그 이름을 '왕버튼'으로 바꾸고 싶다
+			$('input:button').val('왕버튼').css({"width":"200px", "height":"200px"});
+			// type submit에 배경 오렌지, 글자색 하얀색
+			$('input:submit').css('background','orange').css('color','white');
+			// type reset에 배경 노란색
+			$('input:reset').css('background','yellow');
+			// disabled 있는 곳에 배경 powderblue색
+			$('input:disabled').css('background','powderblue');
+			
+			// 순서에 따른 필터 선택자 : index는 zero-base
+			$('tr:odd').css('background', 'yellow');
+			$('tr:even').css('background','lightgray');
+			$('tr:first').css({"background":"black", "color":"white"});
+			$('tr:last').css({"background":"orangered", "color":"white"});
+			
+			// 함수 형태의 필터 선택자
+			// 1. 수열 번째 위치하는 태그 선택
+			$('tr:nth-child(2n)').css('background','yellowgreen');
+			$('td:nth-child(3)').css('background', 'orange');
+			$('tr:eq(7)').css({"background":"black", "color":"gray"});
+			$('tr:gt(2)').css('background', 'white');
+			$('tr:lt(7)').css('font-size', '1.5em');
+			$('td:contains("B형")').css('color', 'red');
+			$('td:has(a)').css('color', 'white');	// a태그를 가지고있는 부분
+			$('td:has(a[href])').css('background', 'cyan');
+			
+			$('td:not(:contains("A형"))').css('color', 'olive');
+		});
+	</script>
+</body>
+</html>
