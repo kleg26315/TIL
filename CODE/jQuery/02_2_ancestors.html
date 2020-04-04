@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<style>
+	.wrap *{
+		border: 1px solid lightgray;
+		display: block;
+		padding: 5px; margin: 15px;
+	}
+	.type{width: 500px;}
+	
+	li{color:red}
+	li>span{color:black}
+	
+</style>
+</head>
+<body>
+	<h1>객체 탐색</h1>
+	
+	<hr><hr>
+	
+	<h2>순회(탐색)메소드</h2>
+	<h3>Ancestors메소드</h3>
+	<p>선택된 요소의 상위 요소들을 선택할 수 있는 메소드</p>
+	<div class="wrap">
+		<div class="type">div(great-grandparent)
+			<ul>ul(grandparent)
+				<li>li(direct parent)
+					<span>span</span>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="type">div(grandparent)
+			<p>p(direct parent)
+				<span>span</span>
+			</p>
+		</div>
+	</div>
+	
+	<script>
+		$(function(){
+			console.log($('span').parent());
+			$('span').parent().css({'color':'red', 'border':'2px solid red'});
+			
+			//$('span').parents().css({'color':'blue', 'border':'2px solid blue'});
+			$('span').parents('ul').css({'color':'blue', 'border':'2px solid blue'});
+			
+			$('span').parentsUntil('div').css('background', 'beige');	// div까지니까 div는 미포함
+		});
+	</script>
+</body>
+</html>
