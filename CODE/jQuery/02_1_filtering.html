@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+	<h1>객체 탐색</h1>
+	
+	<hr><hr>
+	
+	<h2>필터링 메소드</h2>
+	<p>필터메소드를 사용해 문서 객체 선택 가능</p>
+	<h4 class="test">test-a</h4>
+	<h4 class="test">test-b</h4>
+	<h4 class="test">test-c</h4>
+	<h4 class="test">test-d</h4>
+	<h4>test-e</h4>
+	<h4 class="test">test-f</h4>
+	<script>
+		$(function(){
+			// 선택자를 이용하여 짝수 번째에 배경 검은색, 글자 빨간색으로 하기
+			$('h4:even').css({'background':'black', 'color':'red'});
+			
+			// filter메소드 이용
+			$('h4').filter(':even').css({'background':'tomato', 'color':'white'});
+			$('h4').filter(':odd').css({'background':'yellowgreen', 'color':'white'});
+			$('h4').first().css('font-size', '1.5em');
+			$('h4').last().text($('h4').last().text() + " : 마지막 요소");
+			$('h4').eq(3).text($('h4').eq(3).text() + " : eq()메소드로 필터링");
+			$('h4').not('.test').css({'background':'yellow', 'color':'black'});
+		});
+	</script>
+</body>
+</html>
