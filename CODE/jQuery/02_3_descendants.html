@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<style>
+	.wrap *{
+		border: 1px solid lightgray;
+		display: block;
+		padding: 5px; margin: 15px;
+	}
+	.type{width: 500px;}
+	
+</style>
+</head>
+<body>
+	<h1>객체 탐색</h1>
+	
+	<hr><hr>
+	
+	<h2>순회(탐색)메소드</h2>
+	<h3>Descendants메소드</h3>
+	<p>선택된 요소의 하위 요소들을 선택할 수 있는 메소드</p>
+	<div class="wrap">
+		<div class="type">div(great-grandparent)
+			<ul>ul(grandparent)
+				<li>li(direct parent)
+					<span>span1</span>
+				</li>
+				<li>li(direct parent)
+					<span>span2</span>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="type">div(grandparent)
+			<p>p(direct parent)
+				<span>span</span>
+			</p>
+		</div>
+	</div>
+	
+	<script>
+		$(function(){
+			var style1 = {'color':'red', 'border':'2px solid red'};
+			var style2 = {'color':'blue', 'border':'2px solid blue'};
+			var style3 = {'color':'green', 'border':'2px solid green'};
+			var style4 = {'color':'pink', 'border':'2px solid pink'};
+			var style5 = {'color':'orange', 'border':'2px solid orange'};
+			
+			$('.wrap').children().css(style1);
+			$('.wrap').children().children().css(style2);
+			$('.wrap').children().children('ul').css(style3);
+			
+			$('.wrap').find('span').css(style4);
+			
+			// 문제 : span1과 span2만 주황색으로 바꾸기
+			$('.wrap').children().children('ul').find('span').css(style5);
+		});
+	</script>
+</body>
+</html>
