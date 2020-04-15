@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<style>
+	.menu{
+		width: 300px; height: 30px;
+		background: yellowgreen;
+		border-radius: 10px;
+		text-align: center;
+		border: 1px solid green;
+		cursor: pointer;
+	}
+	
+	.contents{
+		border: 1px solid lightgray;
+		width: 300px;
+		height: 200px;
+		display: none;
+	}
+</style>
+</head>
+<body>
+	<h1>효과</h1>
+	
+	<hr><hr>
+	
+	<h2>show()와 hide()</h2>
+	<p>문서 객체를 크게하며 보여주거나 작게 하며 사라지게 함</p>
+	<button id="show">보이기</button>
+	<button id="hide">숨기기</button>
+	<button id="toggle">토글이</button><br>
+	<img id="river" src="../images/river1.PNG">
+	<script>
+		$(function(){
+			$('#show').on('click', function(){
+				$('#river').show(100);
+			});
+			
+			$('#hide').on('click', function(){
+				$('#river').hide(900);
+			});
+			
+			$('#toggle').click(function(){
+				$('#river').toggle(100);
+			});
+		});
+	</script>
+	
+	<h2>slideDown()과 slideUp()</h2>
+	<div class="menu">첫 번째 메뉴</div>
+	<p class="contents">내용1</p>
+	<div class="menu">두 번째 메뉴</div>
+	<p class="contents">내용2</p>
+	<div class="menu">세 번째 메뉴</div>
+	<p class="contents">내용3</p>
+	<div class="menu">네 번째 메뉴</div>
+	<p class="contents">내용4</p>
+	<div class="menu">다섯 번째 메뉴</div>
+	<p class="contents">내용5</p>
+	<script>
+		$(function(){
+			$('.menu').click(function(){
+				/* if($(this).next().css('display')=='none'){
+					$(this).next().slideDown();
+				} else{
+					$(this).next().slideUp();
+				} */
+				$(this).next().slideToggle();
+			});
+		});
+	</script>
+	
+	<h2>fadeIn()와 fadeOut()</h2>
+	<button id="fadeIn">fadeIn()</button>
+	<button id="fadeOut">fadeOut()</button>
+	<button id="fadeToggle">fadeToggle()</button><br>
+	<img src="../images/flower1.PNG" id="flower">
+	<script>
+		$(function(){
+			$('#fadeIn').click(function(){
+				$('#flower').fadeIn(900);
+			});
+			
+			$('#fadeOut').click(function(){
+				$('#flower').fadeOut(900);
+			});
+			
+			$('#fadeToggle').click(function(){
+				$('#flower').fadeToggle();
+			});
+			
+			$('#flower').hover(function(){
+				$(this).fadeTo(700, 0.4);
+			}, function(){
+				$(this).fadeTo(700, 0);
+			});
+		});
+	</script>
+</body>
+</html>

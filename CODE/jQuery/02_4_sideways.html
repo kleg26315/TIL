@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<style>
+	.wrap, .wrap *{
+		border: 1px solid lightgray;
+		display: block; padding: 5px; margin: 15px;
+	}
+</style>
+</head>
+<body>
+	<h1>객체 탐색</h1>
+	
+	<hr><hr>
+	
+	<h2>순회(탐색)메소드</h2>
+	<h2>sideways 메소드</h2>
+	<div class="wrap">div(parent)
+		<p>p</p>
+		<span>span</span>
+		<h4>h4</h4>
+		<h5>h5</h5>
+		<p>p</p>
+	</div>
+	
+	<script>
+		$(function(){
+			$('h4').siblings().css({'color':'red', 'border':'2px solid red'});
+			$('h4').siblings('p').css({'color':'orange', 'border':'2px solid orange'});
+			
+			$('h4').next().css({'color':'blue', 'border':'2px solid blue'});
+			$('h4').nextAll().css('font-size', '3em');
+			$('h4').nextUntil('p').css('border', 'dashed');
+			
+			$('h4').prev().css({'background':'red', 'color':'white'});
+			$('h4').prevAll().css({'background':'beige', 'color':'red'});
+			$('h4').prevUntil('p').css('border', 'double');
+		});
+	</script>
+</body>
+</html>
