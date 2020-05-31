@@ -9,7 +9,7 @@
 
 * 화면 구현
   * [HTML5](https://github.com/kleg26315/TIL/tree/master/CODE/HTML5)
-  * CSS3
+  * [CSS3](https://github.com/kleg26315/TIL/tree/master/CODE/CSS3)
   * JavaScript
   * jQuery
 
